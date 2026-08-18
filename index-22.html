@@ -1,0 +1,3589 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کلینیکال پرو | جامع‌ترین ابزار تفسیر بالینی</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#0f2634" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ABG" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Inter', 'Segoe UI', Tahoma, sans-serif;
+            background: #080c18;
+            min-height: 100vh;
+            padding: 20px;
+            color: #e8edf5;
+            transition: all 0.3s;
+            direction: rtl;
+        }
+
+        body.light-mode {
+            background: #f0f4ff;
+            color: #1a2a4a;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(12, 20, 40, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 40px;
+            padding: 30px 35px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #b71c1c, #d32f2f 40%, #2c6b9e 70%, #1a3d6b);
+        }
+
+        body.light-mode .main-container {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 30px 80px rgba(0, 20, 50, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .main-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.06);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        body.light-mode .main-header {
+            border-color: rgba(0, 0, 0, 0.06);
+        }
+
+        .main-header .logo-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 30px rgba(211, 47, 47, 0.2));
+        }
+
+        .main-header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c, #2c6b9e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .main-header .subtitle {
+            font-size: 16px;
+            color: #8aaac0;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        body.light-mode .main-header .subtitle {
+            color: #3d5a78;
+        }
+
+        .main-header .badge-uni {
+            display: inline-block;
+            background: linear-gradient(135deg, #b71c1c, #d32f2f);
+            color: #fff;
+            padding: 6px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 8px;
+            -webkit-text-fill-color: #fff;
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.25);
+        }
+
+        .main-header .deco-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #d32f2f, #2c6b9e);
+            border-radius: 10px;
+            margin: 12px auto 0;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .top-bar .lang-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        body.light-mode .top-bar .lang-label {
+            color: #6a8aaa;
+        }
+
+        .lang-select {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+        }
+
+        body.light-mode .lang-select {
+            background: #e8f0fe;
+            border-color: rgba(44, 107, 158, 0.12);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 5px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .lang-btn:hover {
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(211, 47, 47, 0.3);
+        }
+
+        body.light-mode .lang-btn {
+            color: #1a3d6b;
+        }
+
+        body.light-mode .lang-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .lang-btn.active {
+            color: #fff;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #b0cce0;
+            padding: 7px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        body.light-mode .theme-toggle {
+            background: #e8edf3;
+            color: #1a3d6b;
+            border-color: #dce6f0;
+        }
+
+        body.light-mode .theme-toggle:hover {
+            background: #d5dee9;
+        }
+
+        .tab-selector {
+            display: flex;
+            gap: 8px;
+            margin: 18px 0 22px 0;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        body.light-mode .tab-selector {
+            background: #e8f0fe;
+            border-color: rgba(44, 107, 158, 0.08);
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-family: inherit;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tab-btn:hover {
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4a);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn .tab-icon {
+            font-size: 22px;
+        }
+
+        .tab-btn .tab-badge {
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        body.light-mode .tab-btn {
+            color: #4a6a8a;
+        }
+
+        body.light-mode .tab-btn:hover {
+            color: #1a3d6b;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        body.light-mode .tab-btn.active {
+            background: linear-gradient(135deg, #1a3d6b, #2c6b9e);
+            color: #fff;
+            border: none;
+            box-shadow: 0 8px 30px rgba(44, 107, 158, 0.25);
+        }
+
+        .tab-btn.abg-tab.active {
+            background: linear-gradient(135deg, #0a1628, #1a3d6b);
+            border-left: 4px solid #26c6da;
+        }
+
+        .tab-btn.vbg-tab.active {
+            background: linear-gradient(135deg, #1a0a0a, #4a1a1a);
+            border-left: 4px solid #d32f2f;
+        }
+
+        .tab-btn.ana-tab.active {
+            background: linear-gradient(135deg, #0a1a0a, #1a4a1a);
+            border-left: 4px solid #2e7d32;
+        }
+
+        body.light-mode .tab-btn.abg-tab.active {
+            background: linear-gradient(135deg, #0a2647, #2c6b9e);
+            border-left: 4px solid #26c6da;
+        }
+
+        body.light-mode .tab-btn.vbg-tab.active {
+            background: linear-gradient(135deg, #4a1a1a, #7a2a2a);
+            border-left: 4px solid #d32f2f;
+        }
+
+        body.light-mode .tab-btn.ana-tab.active {
+            background: linear-gradient(135deg, #1a4a1a, #2a6a2a);
+            border-left: 4px solid #2e7d32;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.08), rgba(255, 193, 7, 0.03));
+            border-right: 5px solid #ffc107;
+            padding: 12px 20px;
+            border-radius: 14px;
+            margin: 6px 0 18px 0;
+            font-size: 13px;
+            color: #ffd54f;
+            border: 1px solid rgba(255, 193, 7, 0.06);
+        }
+
+        body.light-mode .warning-box {
+            background: #fff3cd;
+            color: #856404;
+            border-color: #ffc107;
+        }
+
+        body.light-mode .warning-box strong {
+            color: #d39e00;
+        }
+
+        .warning-box strong {
+            color: #ffd54f;
+        }
+
+        .gender-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 14px 20px;
+            border-radius: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.light-mode .gender-section {
+            background: #e8f0fe;
+            border-color: rgba(44, 107, 158, 0.1);
+        }
+
+        .gender-section label {
+            font-weight: 700;
+            color: #b0cce0;
+            font-size: 14px;
+        }
+
+        body.light-mode .gender-section label {
+            color: #1a3d6b;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 14px;
+        }
+
+        .gender-options label {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 5px 14px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid transparent;
+            color: #b0cce0;
+        }
+
+        body.light-mode .gender-options label {
+            color: #1a3d6b;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .gender-options label:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .gender-options input[type="radio"] {
+            width: 17px;
+            height: 17px;
+            accent-color: #d32f2f;
+        }
+
+        .gender-options input[type="radio"]:checked+label {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: #fff;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            margin: 10px 0 8px 0;
+            overflow: hidden;
+        }
+
+        body.light-mode .progress-bar {
+            background: #dce6f0;
+        }
+
+        .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d32f2f, #2c6b9e);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+            width: 0%;
+        }
+
+        .stats {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 12.5px;
+            color: #6a8aaa;
+            margin: 6px 0 14px 0;
+        }
+
+        .stats span {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            font-weight: 500;
+        }
+
+        body.light-mode .stats span {
+            background: white;
+            border-color: #dce6f0;
+            color: #1a3d6b;
+        }
+
+        .stats .num {
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        body.light-mode .stats .num {
+            color: #0a2647;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category-title {
+            background: linear-gradient(135deg, rgba(26, 61, 107, 0.4), rgba(44, 107, 158, 0.2));
+            color: white;
+            padding: 10px 18px;
+            border-radius: 14px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s;
+        }
+
+        body.light-mode .category-title {
+            background: linear-gradient(135deg, #1a3d6b, #2c6b9e);
+            color: #fff;
+        }
+
+        .category-title:hover {
+            border-color: rgba(44, 107, 158, 0.5);
+        }
+
+        .category-title .icon {
+            font-size: 20px;
+        }
+        .category-title .cat-label {
+            flex: 1;
+        }
+        .category-title .filled-badge {
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+        .category-title .arrow {
+            font-size: 14px;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+        .category.open .category-title .arrow {
+            transform: rotate(180deg);
+        }
+
+        .param-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+        }
+
+        .category.open .param-grid {
+            max-height: 4000px;
+            opacity: 1;
+            margin-top: 10px;
+        }
+
+        .param-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 10px 14px;
+            transition: all 0.3s;
+        }
+
+        body.light-mode .param-item {
+            background: #f7faff;
+            border-color: #dce6f0;
+        }
+
+        .param-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(44, 107, 158, 0.4);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        body.light-mode .param-item:hover {
+            border-color: #2c6b9e;
+        }
+
+        .param-item label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #d0e4f0;
+            margin-bottom: 2px;
+        }
+
+        body.light-mode .param-item label {
+            color: #1a3d6b;
+        }
+
+        .param-item .normal-range {
+            font-size: 10px;
+            color: #6a8aaa;
+            display: inline-block;
+            margin-bottom: 4px;
+            background: rgba(44, 107, 158, 0.1);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        body.light-mode .param-item .normal-range {
+            background: rgba(44, 107, 158, 0.08);
+            color: #6b7f94;
+        }
+
+        .param-item .input-row {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .param-item input {
+            flex: 1;
+            padding: 7px 10px;
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            font-size: 13px;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.3);
+            font-family: inherit;
+            min-width: 40px;
+            color: #ffffff;
+        }
+
+        body.light-mode .param-item input {
+            background: white;
+            color: #1a2a4a;
+            border-color: #d0dce8;
+        }
+
+        .param-item input::placeholder {
+            color: #4a6a8a;
+        }
+
+        .param-item input:focus {
+            outline: none;
+            border-color: #2c6b9e;
+            box-shadow: 0 0 0 3px rgba(44, 107, 158, 0.15);
+        }
+
+        .param-item input.error {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .param-item .btn-analyze-single {
+            background: linear-gradient(135deg, #2c6b9e, #1a4d7a);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 7px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .param-item .btn-analyze-single:hover {
+            transform: scale(1.05);
+        }
+
+        .param-item .single-result {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            display: none;
+            line-height: 1.8;
+        }
+
+        .param-item .single-result.visible {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .single-result.normal {
+            background: rgba(46, 125, 50, 0.12);
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            color: #81c784;
+        }
+
+        body.light-mode .single-result.normal {
+            background: #d4edda;
+            border-color: #b7dbbd;
+            color: #155724;
+        }
+
+        .single-result.high {
+            background: rgba(198, 40, 40, 0.12);
+            border: 1px solid rgba(198, 40, 40, 0.2);
+            color: #ef9a9a;
+        }
+
+        body.light-mode .single-result.high {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .single-result.low {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.15);
+            color: #ffd54f;
+        }
+
+        body.light-mode .single-result.low {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 18px 0 14px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a3d6b, #2c6b9e);
+            color: white;
+            box-shadow: 0 6px 20px rgba(44, 107, 158, 0.25);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+        }
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.25);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #b0cce0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        body.light-mode .btn-secondary {
+            background: #e8edf3;
+            color: #1a3d6b;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+        }
+
+        .output-section {
+            margin-top: 22px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: none;
+        }
+
+        body.light-mode .output-section {
+            background: #f0f7ff;
+            border-color: #c5d9ed;
+        }
+
+        .output-section.visible {
+            display: block;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .output-section h2 {
+            color: #ffffff;
+            border-bottom: 3px solid rgba(44, 107, 158, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.light-mode .output-section h2 {
+            color: #0a2647;
+            border-color: #2c6b9e;
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 6px solid #2c6b9e;
+        }
+
+        body.light-mode .result-item {
+            background: white;
+            border-color: #e0e8f0;
+        }
+
+        .result-item .param-name {
+            font-size: 17px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        body.light-mode .result-item .param-name {
+            color: #0a2647;
+        }
+
+        .result-item .param-status {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 4px 0 6px 0;
+        }
+
+        .result-item .desc {
+            color: #b0cce0;
+            line-height: 1.8;
+            font-size: 13.5px;
+            margin: 4px 0;
+        }
+
+        body.light-mode .result-item .desc {
+            color: #2d4059;
+        }
+
+        .result-item .disease-list {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 14px;
+            border-radius: 10px;
+            margin-top: 6px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.light-mode .result-item .disease-list {
+            background: #f8faff;
+            border-color: #b8cfe0;
+        }
+
+        .result-item .disease-list strong {
+            color: #8aaac0;
+        }
+
+        body.light-mode .result-item .disease-list strong {
+            color: #1a3d6b;
+        }
+
+        .final-summary {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-top: 16px;
+            border: 1px solid rgba(44, 107, 158, 0.15);
+        }
+
+        body.light-mode .final-summary {
+            background: linear-gradient(135deg, #e8f0fe, #d4e2f2);
+            border-color: #2c6b9e;
+        }
+
+        .final-summary h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        body.light-mode .final-summary h3 {
+            color: #0a2647;
+        }
+
+        .final-summary p {
+            line-height: 2;
+            font-size: 14px;
+            color: #b0cce0;
+        }
+
+        body.light-mode .final-summary p {
+            color: #1a2a4a;
+        }
+
+        .final-summary .specialist {
+            background: linear-gradient(135deg, #1a3d6b, #2c6b9e);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 6px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .final-summary .care-list {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 8px;
+            list-style: none;
+        }
+
+        body.light-mode .final-summary .care-list {
+            background: white;
+        }
+
+        .final-summary .care-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #b0cce0;
+        }
+
+        body.light-mode .final-summary .care-list li {
+            color: #1a2a4a;
+            border-color: #e8edf3;
+        }
+
+        .final-summary .care-list li:last-child {
+            border-bottom: none;
+        }
+
+        .final-summary .care-list li::before {
+            content: "🩺";
+            font-size: 15px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #6a8aaa;
+            padding: 25px;
+            font-size: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 12px;
+            color: #4a6a8a;
+        }
+
+        body.light-mode .footer {
+            color: #5a7a9a;
+            border-color: #dce6f0;
+        }
+
+        .footer strong {
+            color: #8aaac0;
+        }
+
+        body.light-mode .footer strong {
+            color: #1a3d6b;
+        }
+
+        @media (max-width: 700px) {
+            .main-container {
+                padding: 16px;
+            }
+            .param-grid {
+                grid-template-columns: 1fr;
+            }
+            .main-header h1 {
+                font-size: 26px;
+            }
+            .gender-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .actions .btn {
+                width: 100%;
+                text-align: center;
+                padding: 10px 16px;
+                font-size: 13px;
+                justify-content: center;
+            }
+            .param-item .input-row {
+                flex-wrap: wrap;
+            }
+            .param-item .btn-analyze-single {
+                width: 100%;
+                padding: 8px;
+                font-size: 13px;
+                justify-content: center;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .tab-btn {
+                min-width: 80px;
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+            .tab-btn .tab-badge {
+                display: none;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                color: #000;
+            }
+            .main-container {
+                background: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .btn,
+            .actions,
+            .warning-box,
+            .param-item .btn-analyze-single,
+            .gender-section,
+            .stats,
+            .progress-bar,
+            .theme-toggle,
+            .top-bar,
+            .tab-selector {
+                display: none !important;
+            }
+            .output-section {
+                display: block !important;
+                border: none;
+                background: white;
+            }
+            .result-item {
+                border: 1px solid #ddd;
+            }
+            .param-item {
+                background: white !important;
+            }
+            .param-item label {
+                color: #000;
+            }
+            .param-item input {
+                color: #000;
+                background: #f5f5f5;
+            }
+            .result-item .param-name {
+                color: #000;
+            }
+            .result-item .desc {
+                color: #333;
+            }
+            .final-summary p {
+                color: #333;
+            }
+            .final-summary .care-list li {
+                color: #333;
+            }
+            .footer strong {
+                color: #000;
+            }
+            .stats span {
+                color: #000;
+            }
+            .stats .num {
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="main-header">
+            <span class="logo-icon">🩺</span>
+            <h1>کلینیکال پرو</h1>
+            <div class="subtitle">کاملترین ابزار تفسیر بالینی</div>
+            <div class="badge-uni">🏥 انجمن علمی پرستاری دانشگاه علوم پزشکی کردستان</div>
+            <div class="deco-line"></div>
+        </div>
+
+        <!-- ===== TOP BAR ===== -->
+        <div class="top-bar">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <span class="lang-label" id="langLabel">🌐 زبان</span>
+                <div class="lang-select">
+                    <button class="lang-btn active" data-lang="fa" onclick="setLanguage('fa')">🇮🇷 فارسی</button>
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+                </div>
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓 تغییر تم</button>
+        </div>
+
+        <!-- ===== WARNING ===== -->
+        <div class="warning-box">
+            <strong id="warnTitle">⚠️ هشدار مهم:</strong>
+            <span id="warnText">این برنامه صرفاً جنبه <strong>آموزشی و آگاهی‌بخش</strong> دارد و هرگز جایگزین نظر پزشک متخصص نمی‌شود.</span>
+        </div>
+
+        <!-- ===== TAB SELECTOR ===== -->
+        <div class="tab-selector" id="tabSelector">
+            <button class="tab-btn abg-tab active" data-tab="abg" onclick="switchTab('abg')">
+                <span class="tab-icon">🫁</span> ABG
+                <span class="tab-badge">گازهای خون شریانی</span>
+            </button>
+            <button class="tab-btn vbg-tab" data-tab="vbg" onclick="switchTab('vbg')">
+                <span class="tab-icon">🩸</span> VBG
+                <span class="tab-badge">گازهای خون وریدی</span>
+            </button>
+            <button class="tab-btn ana-tab" data-tab="ana" onclick="switchTab('ana')">
+                <span class="tab-icon">🧪</span> ANA
+                <span class="tab-badge">آنالیز آزمایش‌ها</span>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== TAB 1: ABG ===== -->
+        <!-- ============================================================ -->
+        <div class="tab-content active" id="tab-abg">
+            <div id="abgContent">
+                <p style="color:#4a6a8a;text-align:center;padding:20px;">🔄 بارگذاری ABG ...</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== TAB 2: VBG ===== -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="tab-vbg">
+            <div id="vbgContent">
+                <p style="color:#4a6a8a;text-align:center;padding:20px;">🔄 بارگذاری VBG ...</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== TAB 3: ANA (با تمام ۴۲ پارامتر) ===== -->
+        <!-- ============================================================ -->
+        <div class="tab-content" id="tab-ana">
+            <div id="anaContent">
+                <!-- ANA content will be loaded here -->
+                <p style="color:#4a6a8a;text-align:center;padding:20px;">🔄 بارگذاری ANA ...</p>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            <strong id="footerLine1">طراحی و تولید توسط انجمن پرستاری دانشگاه علوم پزشکی کردستان</strong><br>
+            <span id="footerLine2">تمامی حقوق محفوظ است · نسخه ۷.۰ · ❤️ ساخته شده با عشق برای سلامت شما</span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. THEME TOGGLE
+        // ============================================================
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // ============================================================
+        // 2. LANGUAGE
+        // ============================================================
+        var currentLang = 'fa';
+
+        var langText = {
+            fa: {
+                langLabel: '🌐 زبان',
+                warnTitle: '⚠️ هشدار مهم:',
+                warnText: 'این برنامه صرفاً جنبه <strong>آموزشی و آگاهی‌بخش</strong> دارد و هرگز جایگزین نظر پزشک متخصص نمی‌شود.',
+                footerLine1: 'طراحی و تولید توسط انجمن پرستاری دانشگاه علوم پزشکی کردستان',
+                footerLine2: 'تمامی حقوق محفوظ است · نسخه ۷.۰ · ❤️ ساخته شده با عشق برای سلامت شما',
+                genderLabel: '👤 جنسیت خود را انتخاب کنید:',
+                genderMale: '👨 مرد',
+                genderFemale: '👩 زن',
+                statsFilled: '📊 پر شده:',
+                statsOf: 'از',
+                statsNormal: '✅ نرمال:',
+                statsAbnormal: '🔴 غیرنرمال:',
+                btnInterpretAll: '🔍 تفسیر پارامترهای پر شده',
+                btnAnalyzeAllSingles: '📋 تحلیل تکی همه',
+                btnClearAll: '🗑️ پاک کردن همه',
+                btnPrint: '🖨️ چاپ / PDF',
+                outputTitle: '📋 نتیجه تفسیر کلی',
+                inputPlaceholder: 'عدد را وارد کنید',
+                btnAnalyzeSingle: '🔍 تفسیر',
+                normalLabel: 'نرمال:',
+                errorInvalidNumber: '⚠️ لطفاً یک عدد معتبر وارد کنید.',
+                alertNoneFilledSingles: '⚠️ هیچ پارامتری پر نشده است. لطفاً ابتدا اعداد را وارد کنید.',
+                alertNoneFilledAll: '⚠️ هیچ پارامتری پر نشده است. لطفاً حداقل یک عدد را وارد کنید.',
+                descIcon: '📖',
+                yourValueSingle: '📊 عدد شما:',
+                normalRangeLabel: 'محدوده نرمال:',
+                statusNormal: '✅ نرمال',
+                statusLow: '🔽 پایین‌تر از نرمال',
+                statusHigh: '🔼 بالاتر از نرمال',
+                increaseWord: 'افزایش',
+                decreaseWord: 'کاهش',
+                diseaseIntroSuffix: ' این پارامتر ممکن است نشانه‌دهنده:',
+                diseaseNormalMsg: '✅ میزان این پارامتر در محدوده طبیعی است و جای نگرانی ندارد.',
+                nursingHeader: '🧾 مراقبت‌های پرستاری پیشنهادی (بر اساس شواهد علمی):',
+                nursingDefault: [
+                    '🩺 پیگیری منظم وضعیت بیمار',
+                    '📋 آموزش به بیمار در مورد اهمیت آزمایش',
+                    '🩸 کنترل علائم حیاتی'
+                ],
+                explanationLabel: 'توضیح:',
+                yourValueLabel: 'عدد شما:',
+                emptyMessage: 'هیچ پارامتر معتبری برای تحلیل وجود ندارد.',
+                finalSummaryTitle: '📌 تفسیر کلی وضعیت',
+                specialistLabel: '👨‍⚕️ متخصص پیشنهادی:',
+                comprehensiveCareLabel: '🧾 مراقبت‌های پرستاری جامع (بر اساس شواهد علمی):',
+                evidenceNote: '⚕️ این توصیه‌ها بر اساس شواهد علمی به‌روز و با همکاری اساتید پرستاری دانشگاه علوم پزشکی کردستان تهیه شده است.',
+                sourcesNote: '📚 منابع: دستورالعمل‌های ملی و بین‌المللی پرستاری (NICE، CDC، UpToDate)',
+                allNormalSummary: '✅ تمام پارامترهای ثبت‌شده شما در محدوده نرمال قرار دارند. وضعیت عمومی شما مطلوب به نظر می‌رسد.',
+                specialistAnnual: 'پزشک عمومی (چکاپ سالانه)',
+                careItemsAllNormal: [
+                    'فعالیت بدنی منظم (حداقل ۳۰ دقیقه در روز)',
+                    'رژیم غذایی متعادل شامل میوه، سبزیجات و پروتئین کافی',
+                    'مصرف حداقل ۸ لیوان آب در روز',
+                    'کنترل دوره‌ای فشار خون و قند خون',
+                    'پرهیز از استرس و خواب کافی'
+                ],
+                highCountSuffix: ' پارامتر بالاتر از نرمال دارید. ',
+                lowCountSuffix: ' پارامتر پایین‌تر از نرمال دارید. ',
+                abnormalSummaryPrefix: '⚠️ ',
+                abnormalSummaryMid: 'تعداد کل موارد غیرطبیعی: ',
+                abnormalSummarySuffix: ' مورد. این نتایج نیازمند بررسی دقیق‌تر توسط پزشک متخصص است.',
+                specialists: {
+                    blood: 'متخصص خون (هماتولوژیست)',
+                    coag: 'متخصص خون یا داخلی (اختلالات انعقادی)',
+                    liver: 'متخصص گوارش و کبد (گاستروانترولوژیست)',
+                    sugar: 'متخصص غدد (اندوکرینولوژیست) یا داخلی',
+                    urine: 'متخصص کلیه (نفرولوژیست) یا اورولوژیست',
+                    stool: 'متخصص گوارش (گاستروانترولوژیست)',
+                    internal: 'پزشک داخلی'
+                },
+                careItemsAbnormalBase: [
+                    '🩺 کنترل دقیق علائم حیاتی (فشار خون، نبض، تنفس، دما، اشباع اکسیژن)',
+                    '📋 آموزش به بیمار در مورد اهمیت نتایج آزمایش و پیگیری درمان',
+                    '💧 توصیه به مصرف مایعات کافی (به جز موارد منع طبی)',
+                    '🍎 کنترل وزن و رژیم غذایی مناسب بر اساس نوع اختلال',
+                    '🔍 بررسی علائم بالینی مانند خونریزی، خستگی، تب، درد، زردی یا تغییرات ادرار',
+                    '🧪 پیگیری منظم آزمایشات طبق نظر پزشک',
+                    '🚫 اجتناب از خوددرمانی و مصرف دارو بدون تجویز پزشک',
+                    '🧠 آموزش علائم هشداردهنده که نیاز به مراجعه فوری دارند'
+                ],
+                careExtra: {
+                    bleeding: [
+                        '🩸 در صورت وجود کبودی، خونریزی لثه یا خون در ادرار/مدفوع، سریعاً به پزشک اطلاع دهید.',
+                        '🩺 بررسی علائم خونریزی داخلی (کاهش فشار خون، تاکی کاردی)'
+                    ],
+                    wbc: [
+                        '🧴 استفاده از ماسک و رعایت بهداشت فردی به دلیل ضعف احتمالی سیستم ایمنی.',
+                        '🌡️ پایش منظم دمای بدن و گزارش تب'
+                    ],
+                    sugar: [
+                        '🩸 پایش منظم قند خون در منزل و ثبت آن در دفترچه.',
+                        '🍽️ رعایت رژیم غذایی مناسب برای دیابت (کم کربوهیدرات و قند).',
+                        '🏃‍♂️ تشویق به فعالیت بدنی منظم (پیاده‌روی روزانه)',
+                        '👣 معاینه روزانه پاها برای جلوگیری از زخم دیابتی'
+                    ],
+                    liver: [
+                        '🫁 پرهیز از مصرف الکل و داروهای آسیب‌رسان به کبد.',
+                        '🥗 رعایت رژیم غذایی کم چرب برای کاهش چربی کبد.',
+                        '🩺 بررسی علائم نارسایی کبدی (زردی، آسیت، ادم)'
+                    ],
+                    urineProtein: [
+                        '🩺 بررسی فشار خون روزانه و ثبت آن',
+                        '🧪 پیگیری پروتئین ۲۴ ساعته ادرار',
+                        '🧂 رژیم غذایی کم نمک'
+                    ],
+                    dDimer: [
+                        '⚠️ اورژانس! در صورت وجود تنگی نفس ناگهانی، درد قفسه سینه یا تورم پا، سریعاً به اورژانس مراجعه کنید.'
+                    ],
+                    ketone: [
+                        '⚠️ اورژانس! در صورت وجود تهوع، استفراغ، درد شکم یا تنفس سریع، سریعاً به اورژانس مراجعه کنید.'
+                    ]
+                }
+            },
+            en: {
+                langLabel: '🌐 Language',
+                warnTitle: '⚠️ Important Notice:',
+                warnText: 'This application is for <strong>educational and awareness</strong> purposes only and is never a substitute for a specialist physician\'s opinion.',
+                footerLine1: 'Designed by the Nursing Association of Kurdistan University of Medical Sciences',
+                footerLine2: 'All rights reserved · Version 7.0 · ❤️ Made with love for your health',
+                genderLabel: '👤 Select your gender:',
+                genderMale: '👨 Male',
+                genderFemale: '👩 Female',
+                statsFilled: '📊 Filled:',
+                statsOf: 'of',
+                statsNormal: '✅ Normal:',
+                statsAbnormal: '🔴 Abnormal:',
+                btnInterpretAll: '🔍 Interpret Filled Parameters',
+                btnAnalyzeAllSingles: '📋 Analyze All Individually',
+                btnClearAll: '🗑️ Clear All',
+                btnPrint: '🖨️ Print / PDF',
+                outputTitle: '📋 Overall Interpretation Result',
+                inputPlaceholder: 'Enter a number',
+                btnAnalyzeSingle: '🔍 Interpret',
+                normalLabel: 'Normal:',
+                errorInvalidNumber: '⚠️ Please enter a valid number.',
+                alertNoneFilledSingles: '⚠️ No parameters have been filled in. Please enter values first.',
+                alertNoneFilledAll: '⚠️ No parameters have been filled in. Please enter at least one value.',
+                descIcon: '📖',
+                yourValueSingle: '📊 Your value:',
+                normalRangeLabel: 'Normal range:',
+                statusNormal: '✅ Normal',
+                statusLow: '🔽 Below Normal',
+                statusHigh: '🔼 Above Normal',
+                increaseWord: 'An increase in',
+                decreaseWord: 'A decrease in',
+                diseaseIntroSuffix: ' this parameter may indicate:',
+                diseaseNormalMsg: '✅ This parameter is within the normal range and is not a cause for concern.',
+                nursingHeader: '🧾 Suggested Nursing Care (evidence-based):',
+                nursingDefault: [
+                    '🩺 Regular follow-up of patient status',
+                    '📋 Educate the patient about the importance of the test',
+                    '🩸 Monitor vital signs'
+                ],
+                explanationLabel: 'Explanation:',
+                yourValueLabel: 'Your value:',
+                emptyMessage: 'There are no valid parameters to analyze.',
+                finalSummaryTitle: '📌 Overall Status Interpretation',
+                specialistLabel: '👨‍⚕️ Suggested specialist:',
+                comprehensiveCareLabel: '🧾 Comprehensive Nursing Care (evidence-based):',
+                evidenceNote: '⚕️ These recommendations are based on up-to-date scientific evidence, prepared in collaboration with nursing faculty of Kurdistan University of Medical Sciences.',
+                sourcesNote: '📚 Sources: National and international nursing guidelines (NICE, CDC, UpToDate)',
+                allNormalSummary: '✅ All of your recorded parameters are within the normal range. Your general condition appears favorable.',
+                specialistAnnual: 'General Practitioner (Annual Checkup)',
+                careItemsAllNormal: [
+                    'Regular physical activity (at least 30 minutes a day)',
+                    'A balanced diet including fruits, vegetables, and adequate protein',
+                    'Drink at least 8 glasses of water a day',
+                    'Periodic monitoring of blood pressure and blood sugar',
+                    'Avoid stress and get adequate sleep'
+                ],
+                highCountSuffix: ' parameter(s) are above normal. ',
+                lowCountSuffix: ' parameter(s) are below normal. ',
+                abnormalSummaryPrefix: '⚠️ ',
+                abnormalSummaryMid: 'Total abnormal findings: ',
+                abnormalSummarySuffix: ' item(s). These results require further evaluation by a specialist physician.',
+                specialists: {
+                    blood: 'Hematologist',
+                    coag: 'Hematologist or Internist (coagulation disorders)',
+                    liver: 'Gastroenterologist/Hepatologist',
+                    sugar: 'Endocrinologist or Internist',
+                    urine: 'Nephrologist or Urologist',
+                    stool: 'Gastroenterologist',
+                    internal: 'Internist'
+                },
+                careItemsAbnormalBase: [
+                    '🩺 Closely monitor vital signs (blood pressure, pulse, respiration, temperature, oxygen saturation)',
+                    '📋 Educate the patient about the significance of the results and treatment follow-up',
+                    '💧 Recommend adequate fluid intake (unless medically contraindicated)',
+                    '🍎 Monitor weight and provide diet appropriate to the disorder',
+                    '🔍 Assess for clinical signs such as bleeding, fatigue, fever, pain, jaundice, or urinary changes',
+                    '🧪 Ensure regular follow-up testing as directed by the physician',
+                    '🚫 Avoid self-medication and unprescribed drug use',
+                    '🧠 Educate about warning signs that require immediate medical attention'
+                ],
+                careExtra: {
+                    bleeding: [
+                        '🩸 Notify the physician immediately if bruising, gum bleeding, or blood in urine/stool occurs.',
+                        '🩺 Check for signs of internal bleeding (hypotension, tachycardia)'
+                    ],
+                    wbc: [
+                        '🧴 Use a mask and maintain personal hygiene due to possible immune weakness.',
+                        '🌡️ Monitor body temperature regularly and report fever'
+                    ],
+                    sugar: [
+                        '🩸 Monitor blood glucose regularly at home and record it in a logbook.',
+                        '🍽️ Follow an appropriate diabetic diet (low carbohydrate and sugar).',
+                        '🏃‍♂️ Encourage regular physical activity (daily walking)',
+                        '👣 Perform daily foot exams to prevent diabetic ulcers'
+                    ],
+                    liver: [
+                        '🫁 Avoid alcohol and hepatotoxic medications.',
+                        '🥗 Follow a low-fat diet to reduce liver fat.',
+                        '🩺 Check for signs of liver failure (jaundice, ascites, edema)'
+                    ],
+                    urineProtein: [
+                        '🩺 Check and record blood pressure daily',
+                        '🧪 Follow up on 24-hour urine protein',
+                        '🧂 Low-sodium diet'
+                    ],
+                    dDimer: [
+                        '⚠️ Emergency! Seek immediate emergency care if sudden shortness of breath, chest pain, or leg swelling occurs.'
+                    ],
+                    ketone: [
+                        '⚠️ Emergency! Seek immediate emergency care if nausea, vomiting, abdominal pain, or rapid breathing occurs.'
+                    ]
+                }
+            }
+        };
+
+        function t() {
+            return langText[currentLang];
+        }
+
+        function setLanguage(lang) {
+            if (lang === currentLang) return;
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+            translateUI();
+            // Rebuild ABG and VBG if loaded
+            if (typeof abgLoaded !== 'undefined' && abgLoaded) loadABG();
+            if (typeof vbgLoaded !== 'undefined' && vbgLoaded) loadVBG();
+            if (typeof anaLoaded !== 'undefined' && anaLoaded) loadANA();
+        }
+
+        function translateUI() {
+            var tx = t();
+            document.getElementById('langLabel').textContent = tx.langLabel;
+            document.getElementById('warnTitle').textContent = tx.warnTitle;
+            document.getElementById('warnText').innerHTML = tx.warnText;
+            document.getElementById('footerLine1').textContent = tx.footerLine1;
+            document.getElementById('footerLine2').textContent = tx.footerLine2;
+
+            // Update ANA if loaded
+            if (typeof updateANALanguage === 'function') {
+                updateANALanguage();
+            }
+        }
+
+        // ============================================================
+        // 3. TAB SWITCHING
+        // ============================================================
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.querySelector('.tab-btn[data-tab="' + tab + '"]').classList.add('active');
+
+            if (tab === 'abg' && !abgLoaded) loadABG();
+            if (tab === 'vbg' && !vbgLoaded) loadVBG();
+            if (tab === 'ana' && !anaLoaded) loadANA();
+        }
+
+        // ============================================================
+        // 4. LOAD ABG
+        // ============================================================
+        var abgLoaded = false;
+
+        function loadABG() {
+            var container = document.getElementById('abgContent');
+            container.innerHTML = `
+            <!-- ABG CONTENT -->
+            <div class="gender-section">
+                <label id="abgGenderLabel">👤 جنسیت خود را انتخاب کنید:</label>
+                <div class="gender-options">
+                    <label><input type="radio" name="abgGender" value="male" checked> <span id="abgGenderMale">👨 مرد</span></label>
+                    <label><input type="radio" name="abgGender" value="female"> <span id="abgGenderFemale">👩 زن</span></label>
+                </div>
+            </div>
+
+            <div class="progress-bar"><div class="fill" id="abgProgressFill"></div></div>
+            <div class="stats">
+                <span><span id="abgStatsFilled">📊 پر شده:</span> <span class="num" id="abgFilledCount">0</span> <span id="abgStatsOf">از</span> <span class="num" id="abgTotalCount">6</span></span>
+                <span><span id="abgStatsNormal">✅ نرمال:</span> <span class="num" id="abgNormalCount">0</span></span>
+                <span><span id="abgStatsAbnormal">🔴 غیرنرمال:</span> <span class="num" id="abgAbnormalCount">0</span></span>
+            </div>
+
+            <div class="category open" id="cat-abgParams">
+                <div class="category-title" onclick="toggleCategory('abgParams')">
+                    <span class="icon">🫁</span>
+                    <span class="cat-label" id="abgCatLabel">پارامترهای ABG - ۶ پارامتر</span>
+                    <span class="filled-badge" id="abgBadge">۰ / ۶</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="abgParams"></div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="abgBtnInterpretAll" onclick="abgInterpretAll()"><span id="abgBtnInterpretAllText">🔍 تفسیر پارامترهای پر شده</span></button>
+                <button class="btn btn-warning" onclick="abgAnalyzeAllSingles()"><span id="abgBtnAnalyzeAllSinglesText">📋 تحلیل تکی همه</span></button>
+                <button class="btn btn-secondary" onclick="abgClearAll()"><span id="abgBtnClearAllText">🗑️ پاک کردن همه</span></button>
+                <button class="btn btn-success" onclick="printPage()"><span id="abgBtnPrintText">🖨️ چاپ / PDF</span></button>
+            </div>
+
+            <div class="output-section" id="abgOutputSection">
+                <h2 id="abgOutputTitle">📋 نتیجه تفسیر کلی ABG</h2>
+                <div id="abgOutputContent"></div>
+            </div>
+            `;
+
+            var abgParams = [
+                { key: 'abg_pH', label: 'pH', unit: '', normal: [7.35, 7.45], icon: '⚗️' },
+                { key: 'abg_paco2', label: 'PaCO₂', unit: 'mmHg', normal: [35, 45], icon: '🌬️' },
+                { key: 'abg_hco3', label: 'HCO₃⁻', unit: 'mEq/L', normal: [22, 26], icon: '🧪' },
+                { key: 'abg_pao2', label: 'PaO₂', unit: 'mmHg', normal: [80, 100], icon: '🫁' },
+                { key: 'abg_be', label: 'BE', unit: 'mEq/L', normal: [-2, 2], icon: '⚖️' },
+                { key: 'abg_sao2', label: 'SaO₂', unit: '%', normal: [94, 100], icon: '💉' }
+            ];
+
+            var abgGrid = document.getElementById('abgParams');
+            abgGrid.innerHTML = '';
+            abgParams.forEach(function(p) {
+                var div = document.createElement('div');
+                div.className = 'param-item';
+                div.id = 'abg-param-' + p.key;
+                var normalText = t().normalLabel + ' ' + p.normal[0] + ' - ' + p.normal[1] + ' ' + p.unit;
+                div.innerHTML = `
+                    <label>${p.icon} ${p.label}</label>
+                    <span class="normal-range">${normalText}</span>
+                    <div class="input-row">
+                        <input type="number" id="abg-input-${p.key}" step="any" placeholder="${t().inputPlaceholder}" />
+                        <button class="btn-analyze-single" onclick="abgAnalyzeSingle('${p.key}')">${t().btnAnalyzeSingle}</button>
+                    </div>
+                    <div class="single-result" id="abg-result-${p.key}"></div>
+                `;
+                abgGrid.appendChild(div);
+
+                var inp = document.getElementById('abg-input-' + p.key);
+                inp.addEventListener('input', function() { abgUpdateStats(); });
+                inp.addEventListener('keydown', function(e, k) {
+                    if (e.key === 'Enter') abgAnalyzeSingle(k);
+                }.bind(null, p.key));
+            });
+
+            document.querySelectorAll('input[name="abgGender"]').forEach(function(el) {
+                el.addEventListener('change', function() { abgUpdateStats(); });
+            });
+
+            abgLoaded = true;
+            abgUpdateStats();
+            translateUI();
+        }
+
+        // ============================================================
+        // 5. ABG FUNCTIONS
+        // ============================================================
+        function abgGetGender() {
+            var el = document.querySelector('input[name="abgGender"]:checked');
+            return el ? el.value : 'male';
+        }
+
+        function abgGetValue(key) {
+            var inp = document.getElementById('abg-input-' + key);
+            if (!inp) return null;
+            var val = parseFloat(inp.value);
+            return isNaN(val) ? null : val;
+        }
+
+        function abgInterpretParam(key, value) {
+            var p = {
+                'abg_pH': { label: 'pH', unit: '', normal: [7.35, 7.45] },
+                'abg_paco2': { label: 'PaCO₂', unit: 'mmHg', normal: [35, 45] },
+                'abg_hco3': { label: 'HCO₃⁻', unit: 'mEq/L', normal: [22, 26] },
+                'abg_pao2': { label: 'PaO₂', unit: 'mmHg', normal: [80, 100] },
+                'abg_be': { label: 'BE', unit: 'mEq/L', normal: [-2, 2] },
+                'abg_sao2': { label: 'SaO₂', unit: '%', normal: [94, 100] }
+            };
+            var param = p[key];
+            if (!param) return null;
+            var range = param.normal;
+            var low = range[0],
+                high = range[1];
+            var status = 'normal';
+            var statusText = t().statusNormal;
+            if (value < low) { status = 'low';
+                statusText = t().statusLow; } else if (value > high) { status = 'high';
+                statusText = t().statusHigh; }
+
+            var diseaseList = [];
+            if (status === 'high') {
+                if (key === 'abg_pH') diseaseList = [{ name: 'آلکالوز', desc: 'افزایش pH' }];
+                else if (key === 'abg_paco2') diseaseList = [{ name: 'احتباس CO₂', desc: 'هیپوونتیلاسیون' }];
+                else if (key === 'abg_hco3') diseaseList = [{ name: 'آلکالوز متابولیک', desc: 'افزایش بی‌کربنات' }];
+                else diseaseList = [{ name: 'افزایش پارامتر', desc: 'نیاز به بررسی بیشتر' }];
+            } else if (status === 'low') {
+                if (key === 'abg_pH') diseaseList = [{ name: 'اسیدوز', desc: 'کاهش pH' }];
+                else if (key === 'abg_paco2') diseaseList = [{ name: 'تهویه بیش از حد', desc: 'کاهش CO₂' }];
+                else if (key === 'abg_hco3') diseaseList = [{ name: 'اسیدوز متابولیک', desc: 'کاهش بی‌کربنات' }];
+                else diseaseList = [{ name: 'کاهش پارامتر', desc: 'نیاز به بررسی بیشتر' }];
+            }
+
+            var diseaseHTML = '';
+            if (diseaseList.length > 0) {
+                diseaseHTML = '<div class="disease-list"><strong>' + (status === 'high' ? t().increaseWord : t().decreaseWord) +
+                    t().diseaseIntroSuffix + '</strong><br>';
+                for (var i = 0; i < diseaseList.length; i++) {
+                    diseaseHTML += '• <strong>' + diseaseList[i].name + ':</strong> ' + diseaseList[i].desc + '<br>';
+                }
+                diseaseHTML += '</div>';
+            } else {
+                diseaseHTML = '<div class="disease-list">' + t().diseaseNormalMsg + '</div>';
+            }
+
+            var nursingHTML = '<div class="disease-list" style="border-color:#2c6b9e;"><strong>' + t().nursingHeader +
+                '</strong><br>';
+            var nursingItems = t().nursingDefault;
+            for (var i = 0; i < nursingItems.length; i++) {
+                nursingHTML += '• ' + nursingItems[i] + '<br>';
+            }
+            nursingHTML += '</div>';
+
+            return {
+                key: key,
+                label: param.label,
+                value: value,
+                unit: param.unit,
+                normalRange: low + ' - ' + high,
+                status: status,
+                statusText: statusText,
+                statusClass: status === 'normal' ? 'status-normal' : (status === 'high' ? 'status-high' : 'status-low'),
+                desc: 'تفسیر ' + param.label + ' بر اساس مقدار ' + value + ' ' + param.unit,
+                diseaseHTML: diseaseHTML,
+                nursingHTML: nursingHTML,
+                isNormal: status === 'normal'
+            };
+        }
+
+        function abgAnalyzeSingle(key) {
+            var tx = t();
+            var val = abgGetValue(key);
+            var inp = document.getElementById('abg-input-' + key);
+            var resultDiv = document.getElementById('abg-result-' + key);
+
+            if (val === null) {
+                inp.classList.add('error');
+                resultDiv.className = 'single-result';
+                resultDiv.innerHTML = tx.errorInvalidNumber;
+                resultDiv.classList.add('visible');
+                return;
+            }
+            inp.classList.remove('error');
+
+            var result = abgInterpretParam(key, val);
+            if (!result) return;
+
+            var statusClass = result.status === 'normal' ? 'normal' : (result.status === 'high' ? 'high' : 'low');
+
+            var html = '<strong>' + result.statusText + '</strong><br>' +
+                tx.descIcon + ' ' + result.desc + '<br>' +
+                tx.yourValueSingle + ' ' + result.value + ' ' + result.unit + ' | ' + tx.normalRangeLabel + ' ' + result
+                .normalRange + ' ' + result.unit + '<br>' +
+                result.diseaseHTML +
+                result.nursingHTML;
+
+            resultDiv.innerHTML = html;
+            resultDiv.className = 'single-result visible ' + statusClass;
+            abgUpdateStats();
+        }
+
+        function abgAnalyzeAllSingles() {
+            var tx = t();
+            var keys = ['abg_pH', 'abg_paco2', 'abg_hco3', 'abg_pao2', 'abg_be', 'abg_sao2'];
+            var analyzed = 0;
+            for (var i = 0; i < keys.length; i++) {
+                var val = abgGetValue(keys[i]);
+                if (val !== null) {
+                    abgAnalyzeSingle(keys[i]);
+                    analyzed++;
+                }
+            }
+            if (analyzed === 0) alert(tx.alertNoneFilledSingles);
+        }
+
+        function abgInterpretAll() {
+            var tx = t();
+            var keys = ['abg_pH', 'abg_paco2', 'abg_hco3', 'abg_pao2', 'abg_be', 'abg_sao2'];
+            var results = [];
+            var hasValue = false;
+
+            for (var i = 0; i < keys.length; i++) {
+                var val = abgGetValue(keys[i]);
+                var inp = document.getElementById('abg-input-' + keys[i]);
+                if (val === null) {
+                    inp.classList.remove('error');
+                } else {
+                    hasValue = true;
+                    inp.classList.remove('error');
+                    var result = abgInterpretParam(keys[i], val);
+                    if (result) results.push(result);
+                }
+            }
+
+            if (!hasValue) {
+                alert(tx.alertNoneFilledAll);
+                return;
+            }
+
+            var outputSection = document.getElementById('abgOutputSection');
+            var outputContent = document.getElementById('abgOutputContent');
+            outputSection.classList.add('visible');
+
+            var html = '';
+            if (results.length === 0) {
+                html = '<div class="empty-message">' + tx.emptyMessage + '</div>';
+            } else {
+                for (var i = 0; i < results.length; i++) {
+                    var r = results[i];
+                    html += '<div class="result-item">' +
+                        '<div class="param-name">' + r.label + '</div>' +
+                        '<span class="param-status ' + r.statusClass + '">' + r.statusText + '</span>' +
+                        '<div class="desc">' +
+                        '<strong>' + tx.explanationLabel + '</strong> ' + r.desc + '<br>' +
+                        '<strong>' + tx.yourValueLabel + '</strong> ' + r.value + ' ' + r.unit + ' | ' +
+                        '<strong>' + tx.normalRangeLabel + '</strong> ' + r.normalRange + ' ' + r.unit +
+                        '</div>' +
+                        r.diseaseHTML +
+                        r.nursingHTML +
+                        '</div>';
+                }
+
+                var abnormalCount = 0,
+                    highCount = 0,
+                    lowCount = 0;
+                for (var i = 0; i < results.length; i++) {
+                    if (!results[i].isNormal) {
+                        abnormalCount++;
+                        if (results[i].status === 'high') highCount++;
+                        else if (results[i].status === 'low') lowCount++;
+                    }
+                }
+
+                var summary = '';
+                var specialist = tx.specialists.internal;
+                var careItems = [];
+
+                if (abnormalCount === 0) {
+                    summary = tx.allNormalSummary;
+                    specialist = tx.specialistAnnual;
+                    careItems = tx.careItemsAllNormal.slice();
+                } else {
+                    var warning = '';
+                    if (highCount > 0) warning += highCount + tx.highCountSuffix;
+                    if (lowCount > 0) warning += lowCount + tx.lowCountSuffix;
+                    summary = tx.abnormalSummaryPrefix + warning + tx.abnormalSummaryMid + abnormalCount +
+                        tx.abnormalSummarySuffix;
+                    careItems = tx.careItemsAbnormalBase.slice();
+                    if (results.some(r => r.key === 'abg_paco2' && !r.isNormal)) {
+                        careItems = careItems.concat(tx.careExtra.bleeding || []);
+                    }
+                }
+
+                html += '<div class="final-summary">' +
+                    '<h3>' + tx.finalSummaryTitle + '</h3>' +
+                    '<p>' + summary + '</p>' +
+                    '<p style="margin-top:10px;"><span class="specialist">' + tx.specialistLabel + ' ' + specialist +
+                    '</span></p>' +
+                    '<div style="margin-top:12px;"><strong>' + tx.comprehensiveCareLabel + '</strong>' +
+                    '<ul class="care-list">';
+                for (var i = 0; i < careItems.length; i++) {
+                    html += '<li>' + careItems[i] + '</li>';
+                }
+                html += '</ul></div>' +
+                    '<p style="margin-top:10px;font-size:12px;color:#4a6a8a;">' + tx.evidenceNote + '</p>' +
+                    '<p style="margin-top:8px;font-size:11px;color:#4a6a8a;">' + tx.sourcesNote + '</p>' +
+                    '</div>';
+            }
+
+            outputContent.innerHTML = html;
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            abgUpdateStats();
+        }
+
+        function abgUpdateStats() {
+            var keys = ['abg_pH', 'abg_paco2', 'abg_hco3', 'abg_pao2', 'abg_be', 'abg_sao2'];
+            var filled = 0,
+                normal = 0,
+                abnormal = 0;
+            var gender = abgGetGender();
+
+            for (var i = 0; i < keys.length; i++) {
+                var val = abgGetValue(keys[i]);
+                if (val !== null) {
+                    filled++;
+                    var result = abgInterpretParam(keys[i], val);
+                    if (result) {
+                        if (result.isNormal) normal++;
+                        else abnormal++;
+                    }
+                }
+            }
+
+            var tx = t();
+            document.getElementById('abgFilledCount').textContent = filled;
+            document.getElementById('abgTotalCount').textContent = keys.length;
+            document.getElementById('abgNormalCount').textContent = normal;
+            document.getElementById('abgAbnormalCount').textContent = abnormal;
+
+            var progress = (filled / keys.length) * 100;
+            document.getElementById('abgProgressFill').style.width = progress + '%';
+
+            document.getElementById('abgBtnInterpretAll').disabled = (filled === 0);
+            document.getElementById('abgBadge').textContent = filled + ' / ' + keys.length;
+        }
+
+        function abgClearAll() {
+            var keys = ['abg_pH', 'abg_paco2', 'abg_hco3', 'abg_pao2', 'abg_be', 'abg_sao2'];
+            for (var i = 0; i < keys.length; i++) {
+                var inp = document.getElementById('abg-input-' + keys[i]);
+                if (inp) { inp.value = '';
+                    inp.classList.remove('error'); }
+                var rd = document.getElementById('abg-result-' + keys[i]);
+                if (rd) { rd.className = 'single-result';
+                    rd.innerHTML = ''; }
+            }
+            document.getElementById('abgOutputSection').classList.remove('visible');
+            document.getElementById('abgOutputContent').innerHTML = '';
+            abgUpdateStats();
+        }
+
+        // ============================================================
+        // 6. LOAD VBG
+        // ============================================================
+        var vbgLoaded = false;
+
+        function loadVBG() {
+            var container = document.getElementById('vbgContent');
+            container.innerHTML = `
+            <!-- VBG CONTENT -->
+            <div class="gender-section">
+                <label id="vbgGenderLabel">👤 جنسیت خود را انتخاب کنید:</label>
+                <div class="gender-options">
+                    <label><input type="radio" name="vbgGender" value="male" checked> <span id="vbgGenderMale">👨 مرد</span></label>
+                    <label><input type="radio" name="vbgGender" value="female"> <span id="vbgGenderFemale">👩 زن</span></label>
+                </div>
+            </div>
+
+            <div class="progress-bar"><div class="fill" id="vbgProgressFill"></div></div>
+            <div class="stats">
+                <span><span id="vbgStatsFilled">📊 پر شده:</span> <span class="num" id="vbgFilledCount">0</span> <span id="vbgStatsOf">از</span> <span class="num" id="vbgTotalCount">7</span></span>
+                <span><span id="vbgStatsNormal">✅ نرمال:</span> <span class="num" id="vbgNormalCount">0</span></span>
+                <span><span id="vbgStatsAbnormal">🔴 غیرنرمال:</span> <span class="num" id="vbgAbnormalCount">0</span></span>
+            </div>
+
+            <div class="category open" id="cat-vbgParams">
+                <div class="category-title" onclick="toggleCategory('vbgParams')">
+                    <span class="icon">🩸</span>
+                    <span class="cat-label" id="vbgCatLabel">پارامترهای VBG - ۷ پارامتر</span>
+                    <span class="filled-badge" id="vbgBadge">۰ / ۷</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="vbgParams"></div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="vbgBtnInterpretAll" onclick="vbgInterpretAll()"><span id="vbgBtnInterpretAllText">🔍 تفسیر پارامترهای پر شده</span></button>
+                <button class="btn btn-warning" onclick="vbgAnalyzeAllSingles()"><span id="vbgBtnAnalyzeAllSinglesText">📋 تحلیل تکی همه</span></button>
+                <button class="btn btn-secondary" onclick="vbgClearAll()"><span id="vbgBtnClearAllText">🗑️ پاک کردن همه</span></button>
+                <button class="btn btn-success" onclick="printPage()"><span id="vbgBtnPrintText">🖨️ چاپ / PDF</span></button>
+            </div>
+
+            <div class="output-section" id="vbgOutputSection">
+                <h2 id="vbgOutputTitle">📋 نتیجه تفسیر کلی VBG</h2>
+                <div id="vbgOutputContent"></div>
+            </div>
+            `;
+
+            var vbgParams = [
+                { key: 'vbg_pH', label: 'pH وریدی', unit: '', normal: [7.31, 7.41], icon: '⚗️' },
+                { key: 'vbg_pvco2', label: 'PvCO₂', unit: 'mmHg', normal: [41, 51], icon: '🌬️' },
+                { key: 'vbg_hco3', label: 'HCO₃⁻', unit: 'mEq/L', normal: [22, 26], icon: '🧪' },
+                { key: 'vbg_pvo2', label: 'PvO₂', unit: 'mmHg', normal: [30, 40], icon: '🫁' },
+                { key: 'vbg_svo2', label: 'SvO₂', unit: '%', normal: [60, 80], icon: '💉' },
+                { key: 'vbg_be', label: 'BE', unit: 'mEq/L', normal: [-2, 2], icon: '⚖️' },
+                { key: 'vbg_lactate', label: 'لاکتات', unit: 'mmol/L', normal: [0.5, 2.0], icon: '🧬' }
+            ];
+
+            var vbgGrid = document.getElementById('vbgParams');
+            vbgGrid.innerHTML = '';
+            vbgParams.forEach(function(p) {
+                var div = document.createElement('div');
+                div.className = 'param-item';
+                div.id = 'vbg-param-' + p.key;
+                var normalText = t().normalLabel + ' ' + p.normal[0] + ' - ' + p.normal[1] + ' ' + p.unit;
+                div.innerHTML = `
+                    <label>${p.icon} ${p.label}</label>
+                    <span class="normal-range">${normalText}</span>
+                    <div class="input-row">
+                        <input type="number" id="vbg-input-${p.key}" step="any" placeholder="${t().inputPlaceholder}" />
+                        <button class="btn-analyze-single" onclick="vbgAnalyzeSingle('${p.key}')">${t().btnAnalyzeSingle}</button>
+                    </div>
+                    <div class="single-result" id="vbg-result-${p.key}"></div>
+                `;
+                vbgGrid.appendChild(div);
+
+                var inp = document.getElementById('vbg-input-' + p.key);
+                inp.addEventListener('input', function() { vbgUpdateStats(); });
+                inp.addEventListener('keydown', function(e, k) {
+                    if (e.key === 'Enter') vbgAnalyzeSingle(k);
+                }.bind(null, p.key));
+            });
+
+            document.querySelectorAll('input[name="vbgGender"]').forEach(function(el) {
+                el.addEventListener('change', function() { vbgUpdateStats(); });
+            });
+
+            vbgLoaded = true;
+            vbgUpdateStats();
+            translateUI();
+        }
+
+        // ============================================================
+        // 7. VBG FUNCTIONS (similar to ABG)
+        // ============================================================
+        function vbgGetGender() {
+            var el = document.querySelector('input[name="vbgGender"]:checked');
+            return el ? el.value : 'male';
+        }
+
+        function vbgGetValue(key) {
+            var inp = document.getElementById('vbg-input-' + key);
+            if (!inp) return null;
+            var val = parseFloat(inp.value);
+            return isNaN(val) ? null : val;
+        }
+
+        function vbgInterpretParam(key, value) {
+            var p = {
+                'vbg_pH': { label: 'pH وریدی', unit: '', normal: [7.31, 7.41] },
+                'vbg_pvco2': { label: 'PvCO₂', unit: 'mmHg', normal: [41, 51] },
+                'vbg_hco3': { label: 'HCO₃⁻', unit: 'mEq/L', normal: [22, 26] },
+                'vbg_pvo2': { label: 'PvO₂', unit: 'mmHg', normal: [30, 40] },
+                'vbg_svo2': { label: 'SvO₂', unit: '%', normal: [60, 80] },
+                'vbg_be': { label: 'BE', unit: 'mEq/L', normal: [-2, 2] },
+                'vbg_lactate': { label: 'لاکتات', unit: 'mmol/L', normal: [0.5, 2.0] }
+            };
+            var param = p[key];
+            if (!param) return null;
+            var range = param.normal;
+            var low = range[0],
+                high = range[1];
+            var status = 'normal';
+            var statusText = t().statusNormal;
+            if (value < low) { status = 'low';
+                statusText = t().statusLow; } else if (value > high) { status = 'high';
+                statusText = t().statusHigh; }
+
+            var diseaseList = [];
+            if (status === 'high') {
+                if (key === 'vbg_pH') diseaseList = [{ name: 'آلکالوز وریدی', desc: 'افزایش pH' }];
+                else if (key === 'vbg_pvco2') diseaseList = [{ name: 'احتباس CO₂', desc: 'هیپوونتیلاسیون' }];
+                else if (key === 'vbg_lactate') diseaseList = [{ name: 'لاکتات بالا', desc: 'هیپوپرفیوژن / شوک' }];
+                else diseaseList = [{ name: 'افزایش پارامتر', desc: 'نیاز به بررسی بیشتر' }];
+            } else if (status === 'low') {
+                if (key === 'vbg_pH') diseaseList = [{ name: 'اسیدوز وریدی', desc: 'کاهش pH' }];
+                else if (key === 'vbg_pvco2') diseaseList = [{ name: 'تهویه بیش از حد', desc: 'کاهش CO₂' }];
+                else diseaseList = [{ name: 'کاهش پارامتر', desc: 'نیاز به بررسی بیشتر' }];
+            }
+
+            var diseaseHTML = '';
+            if (diseaseList.length > 0) {
+                diseaseHTML = '<div class="disease-list"><strong>' + (status === 'high' ? t().increaseWord : t().decreaseWord) +
+                    t().diseaseIntroSuffix + '</strong><br>';
+                for (var i = 0; i < diseaseList.length; i++) {
+                    diseaseHTML += '• <strong>' + diseaseList[i].name + ':</strong> ' + diseaseList[i].desc + '<br>';
+                }
+                diseaseHTML += '</div>';
+            } else {
+                diseaseHTML = '<div class="disease-list">' + t().diseaseNormalMsg + '</div>';
+            }
+
+            var nursingHTML = '<div class="disease-list" style="border-color:#2c6b9e;"><strong>' + t().nursingHeader +
+                '</strong><br>';
+            var nursingItems = t().nursingDefault;
+            for (var i = 0; i < nursingItems.length; i++) {
+                nursingHTML += '• ' + nursingItems[i] + '<br>';
+            }
+            nursingHTML += '</div>';
+
+            // Lactate alert
+            if (key === 'vbg_lactate' && value > 4) {
+                nursingHTML =
+                    '<div class="disease-list" style="border-color:#b71c1c;background:rgba(183,28,28,0.1);"><strong>🚨 هشدار! لاکتات > ۴ = شوک / هیپوپرفیوژن</strong><br>بررسی فوری برون‌ده قلبی، مایع‌درمانی و حمایت تنفسی توصیه می‌شود.</div>';
+            }
+
+            return {
+                key: key,
+                label: param.label,
+                value: value,
+                unit: param.unit,
+                normalRange: low + ' - ' + high,
+                status: status,
+                statusText: statusText,
+                statusClass: status === 'normal' ? 'status-normal' : (status === 'high' ? 'status-high' : 'status-low'),
+                desc: 'تفسیر ' + param.label + ' بر اساس مقدار ' + value + ' ' + param.unit,
+                diseaseHTML: diseaseHTML,
+                nursingHTML: nursingHTML,
+                isNormal: status === 'normal'
+            };
+        }
+
+        function vbgAnalyzeSingle(key) {
+            var tx = t();
+            var val = vbgGetValue(key);
+            var inp = document.getElementById('vbg-input-' + key);
+            var resultDiv = document.getElementById('vbg-result-' + key);
+
+            if (val === null) {
+                inp.classList.add('error');
+                resultDiv.className = 'single-result';
+                resultDiv.innerHTML = tx.errorInvalidNumber;
+                resultDiv.classList.add('visible');
+                return;
+            }
+            inp.classList.remove('error');
+
+            var result = vbgInterpretParam(key, val);
+            if (!result) return;
+
+            var statusClass = result.status === 'normal' ? 'normal' : (result.status === 'high' ? 'high' : 'low');
+
+            var html = '<strong>' + result.statusText + '</strong><br>' +
+                tx.descIcon + ' ' + result.desc + '<br>' +
+                tx.yourValueSingle + ' ' + result.value + ' ' + result.unit + ' | ' + tx.normalRangeLabel + ' ' + result
+                .normalRange + ' ' + result.unit + '<br>' +
+                result.diseaseHTML +
+                result.nursingHTML;
+
+            resultDiv.innerHTML = html;
+            resultDiv.className = 'single-result visible ' + statusClass;
+            vbgUpdateStats();
+        }
+
+        function vbgAnalyzeAllSingles() {
+            var tx = t();
+            var keys = ['vbg_pH', 'vbg_pvco2', 'vbg_hco3', 'vbg_pvo2', 'vbg_svo2', 'vbg_be', 'vbg_lactate'];
+            var analyzed = 0;
+            for (var i = 0; i < keys.length; i++) {
+                var val = vbgGetValue(keys[i]);
+                if (val !== null) {
+                    vbgAnalyzeSingle(keys[i]);
+                    analyzed++;
+                }
+            }
+            if (analyzed === 0) alert(tx.alertNoneFilledSingles);
+        }
+
+        function vbgInterpretAll() {
+            var tx = t();
+            var keys = ['vbg_pH', 'vbg_pvco2', 'vbg_hco3', 'vbg_pvo2', 'vbg_svo2', 'vbg_be', 'vbg_lactate'];
+            var results = [];
+            var hasValue = false;
+
+            for (var i = 0; i < keys.length; i++) {
+                var val = vbgGetValue(keys[i]);
+                var inp = document.getElementById('vbg-input-' + keys[i]);
+                if (val === null) {
+                    inp.classList.remove('error');
+                } else {
+                    hasValue = true;
+                    inp.classList.remove('error');
+                    var result = vbgInterpretParam(keys[i], val);
+                    if (result) results.push(result);
+                }
+            }
+
+            if (!hasValue) {
+                alert(tx.alertNoneFilledAll);
+                return;
+            }
+
+            var outputSection = document.getElementById('vbgOutputSection');
+            var outputContent = document.getElementById('vbgOutputContent');
+            outputSection.classList.add('visible');
+
+            var html = '';
+            if (results.length === 0) {
+                html = '<div class="empty-message">' + tx.emptyMessage + '</div>';
+            } else {
+                for (var i = 0; i < results.length; i++) {
+                    var r = results[i];
+                    html += '<div class="result-item">' +
+                        '<div class="param-name">' + r.label + '</div>' +
+                        '<span class="param-status ' + r.statusClass + '">' + r.statusText + '</span>' +
+                        '<div class="desc">' +
+                        '<strong>' + tx.explanationLabel + '</strong> ' + r.desc + '<br>' +
+                        '<strong>' + tx.yourValueLabel + '</strong> ' + r.value + ' ' + r.unit + ' | ' +
+                        '<strong>' + tx.normalRangeLabel + '</strong> ' + r.normalRange + ' ' + r.unit +
+                        '</div>' +
+                        r.diseaseHTML +
+                        r.nursingHTML +
+                        '</div>';
+                }
+
+                var abnormalCount = 0,
+                    highCount = 0,
+                    lowCount = 0;
+                for (var i = 0; i < results.length; i++) {
+                    if (!results[i].isNormal) {
+                        abnormalCount++;
+                        if (results[i].status === 'high') highCount++;
+                        else if (results[i].status === 'low') lowCount++;
+                    }
+                }
+
+                var summary = '';
+                var specialist = tx.specialists.internal;
+                var careItems = [];
+
+                if (abnormalCount === 0) {
+                    summary = tx.allNormalSummary;
+                    specialist = tx.specialistAnnual;
+                    careItems = tx.careItemsAllNormal.slice();
+                } else {
+                    var warning = '';
+                    if (highCount > 0) warning += highCount + tx.highCountSuffix;
+                    if (lowCount > 0) warning += lowCount + tx.lowCountSuffix;
+                    summary = tx.abnormalSummaryPrefix + warning + tx.abnormalSummaryMid + abnormalCount +
+                        tx.abnormalSummarySuffix;
+                    careItems = tx.careItemsAbnormalBase.slice();
+                    if (results.some(r => r.key === 'vbg_lactate' && !r.isNormal)) {
+                        careItems = careItems.concat(tx.careExtra.ketone || []);
+                    }
+                }
+
+                html += '<div class="final-summary">' +
+                    '<h3>' + tx.finalSummaryTitle + '</h3>' +
+                    '<p>' + summary + '</p>' +
+                    '<p style="margin-top:10px;"><span class="specialist">' + tx.specialistLabel + ' ' + specialist +
+                    '</span></p>' +
+                    '<div style="margin-top:12px;"><strong>' + tx.comprehensiveCareLabel + '</strong>' +
+                    '<ul class="care-list">';
+                for (var i = 0; i < careItems.length; i++) {
+                    html += '<li>' + careItems[i] + '</li>';
+                }
+                html += '</ul></div>' +
+                    '<p style="margin-top:10px;font-size:12px;color:#4a6a8a;">' + tx.evidenceNote + '</p>' +
+                    '<p style="margin-top:8px;font-size:11px;color:#4a6a8a;">' + tx.sourcesNote + '</p>' +
+                    '</div>';
+            }
+
+            outputContent.innerHTML = html;
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            vbgUpdateStats();
+        }
+
+        function vbgUpdateStats() {
+            var keys = ['vbg_pH', 'vbg_pvco2', 'vbg_hco3', 'vbg_pvo2', 'vbg_svo2', 'vbg_be', 'vbg_lactate'];
+            var filled = 0,
+                normal = 0,
+                abnormal = 0;
+
+            for (var i = 0; i < keys.length; i++) {
+                var val = vbgGetValue(keys[i]);
+                if (val !== null) {
+                    filled++;
+                    var result = vbgInterpretParam(keys[i], val);
+                    if (result) {
+                        if (result.isNormal) normal++;
+                        else abnormal++;
+                    }
+                }
+            }
+
+            document.getElementById('vbgFilledCount').textContent = filled;
+            document.getElementById('vbgTotalCount').textContent = keys.length;
+            document.getElementById('vbgNormalCount').textContent = normal;
+            document.getElementById('vbgAbnormalCount').textContent = abnormal;
+
+            var progress = (filled / keys.length) * 100;
+            document.getElementById('vbgProgressFill').style.width = progress + '%';
+
+            document.getElementById('vbgBtnInterpretAll').disabled = (filled === 0);
+            document.getElementById('vbgBadge').textContent = filled + ' / ' + keys.length;
+        }
+
+        function vbgClearAll() {
+            var keys = ['vbg_pH', 'vbg_pvco2', 'vbg_hco3', 'vbg_pvo2', 'vbg_svo2', 'vbg_be', 'vbg_lactate'];
+            for (var i = 0; i < keys.length; i++) {
+                var inp = document.getElementById('vbg-input-' + keys[i]);
+                if (inp) { inp.value = '';
+                    inp.classList.remove('error'); }
+                var rd = document.getElementById('vbg-result-' + keys[i]);
+                if (rd) { rd.className = 'single-result';
+                    rd.innerHTML = ''; }
+            }
+            document.getElementById('vbgOutputSection').classList.remove('visible');
+            document.getElementById('vbgOutputContent').innerHTML = '';
+            vbgUpdateStats();
+        }
+
+        // ============================================================
+        // 8. LOAD ANA (با تمام ۴۲ پارامتر)
+        // ============================================================
+        var anaLoaded = false;
+
+        function loadANA() {
+            var container = document.getElementById('anaContent');
+
+            // Load the full ANA HTML from the file content
+            // We'll extract the body content and inject it
+            var anaHTML = `
+            <div class="gender-section">
+                <label id="anaGenderLabel">👤 جنسیت خود را انتخاب کنید:</label>
+                <div class="gender-options">
+                    <label><input type="radio" name="anaGender" value="male"> <span id="anaGenderMale">👨 مرد</span></label>
+                    <label><input type="radio" name="anaGender" value="female" checked> <span id="anaGenderFemale">👩 زن</span></label>
+                </div>
+            </div>
+
+            <div class="progress-bar"><div class="fill" id="anaProgressFill"></div></div>
+            <div class="stats">
+                <span><span id="anaStatsFilled">📊 پر شده:</span> <span class="num" id="anaFilledCount">0</span> <span id="anaStatsOf">از</span> <span class="num" id="anaTotalCount">42</span></span>
+                <span><span id="anaStatsNormal">✅ نرمال:</span> <span class="num" id="anaNormalCount">0</span></span>
+                <span><span id="anaStatsAbnormal">🔴 غیرنرمال:</span> <span class="num" id="anaAbnormalCount">0</span></span>
+            </div>
+
+            <div class="category open" id="cat-anaCbcParams">
+                <div class="category-title" onclick="toggleCategory('anaCbcParams')">
+                    <span class="icon">🩸</span>
+                    <span class="cat-label" id="anaCatlabel-cbcParams">آزمایش کامل خون (CBC) - ۹ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-cbcParams">۰ / ۹</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaCbcParams"></div>
+            </div>
+
+            <div class="category" id="cat-anaCoagulationParams">
+                <div class="category-title" onclick="toggleCategory('anaCoagulationParams')">
+                    <span class="icon">🧪</span>
+                    <span class="cat-label" id="anaCatlabel-coagulationParams">التهاب و انعقاد خون - ۷ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-coagulationParams">۰ / ۷</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaCoagulationParams"></div>
+            </div>
+
+            <div class="category" id="cat-anaLiverParams">
+                <div class="category-title" onclick="toggleCategory('anaLiverParams')">
+                    <span class="icon">🫁</span>
+                    <span class="cat-label" id="anaCatlabel-liverParams">آنزیم‌های کبدی - ۶ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-liverParams">۰ / ۶</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaLiverParams"></div>
+            </div>
+
+            <div class="category" id="cat-anaMetabolicParams">
+                <div class="category-title" onclick="toggleCategory('anaMetabolicParams')">
+                    <span class="icon">🍬</span>
+                    <span class="cat-label" id="anaCatlabel-metabolicParams">قند و چربی خون - ۶ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-metabolicParams">۰ / ۶</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaMetabolicParams"></div>
+            </div>
+
+            <div class="category" id="cat-anaUrineParams">
+                <div class="category-title" onclick="toggleCategory('anaUrineParams')">
+                    <span class="icon">💧</span>
+                    <span class="cat-label" id="anaCatlabel-urineParams">آنالیز ادرار - ۸ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-urineParams">۰ / ۸</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaUrineParams"></div>
+            </div>
+
+            <div class="category" id="cat-anaStoolParams">
+                <div class="category-title" onclick="toggleCategory('anaStoolParams')">
+                    <span class="icon">🧻</span>
+                    <span class="cat-label" id="anaCatlabel-stoolParams">آزمایش مدفوع - ۶ پارامتر</span>
+                    <span class="filled-badge" id="anaBadge-stoolParams">۰ / ۶</span>
+                    <span class="arrow">◀</span>
+                </div>
+                <div class="param-grid" id="anaStoolParams"></div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="anaBtnInterpretAll" onclick="anaInterpretAll()"><span id="anaBtnInterpretAllText">🔍 تفسیر پارامترهای پر شده</span></button>
+                <button class="btn btn-warning" onclick="anaAnalyzeAllSingles()"><span id="anaBtnAnalyzeAllSinglesText">📋 تحلیل تکی همه</span></button>
+                <button class="btn btn-secondary" onclick="anaClearAll()"><span id="anaBtnClearAllText">🗑️ پاک کردن همه</span></button>
+                <button class="btn btn-success" onclick="printPage()"><span id="anaBtnPrintText">🖨️ چاپ / PDF</span></button>
+            </div>
+
+            <div class="output-section" id="anaOutputSection">
+                <h2 id="anaOutputTitle">📋 نتیجه تفسیر کلی ANA</h2>
+                <div id="anaOutputContent"></div>
+            </div>
+            `;
+
+            container.innerHTML = anaHTML;
+
+            // Now build the ANA parameters using the data from the file
+            // We'll use the same data structure from the ANA file
+
+            var anaParamsDB = {
+                fa: {
+                    rbc: { label: "گلبول قرمز (RBC)", unit: "میلیون/میکرولیتر", normal: { male: [4.7, 6.1], female: [4.2,
+                            5.4] }, desc: "گلبول‌های قرمز اکسیژن را از ریه به تمام سلول‌های بدن حمل می‌کنند.",
+                        highDiseases: [{ name: "پلی‌سیتمی ورا", desc: "نوعی سرطان خون که تولید بیش از حد گلبول قرمز می‌کند." },
+                            { name: "کم‌آبی شدید", desc: "کاهش حجم پلاسما باعث غلظت نسبی خون می‌شود." },
+                            { name: "بیماری‌های مزمن ریوی", desc: "هیپوکسی مزمن باعث تحریک تولید اریتروپوئیتین می‌شود." }
+                        ],
+                        lowDiseases: [{ name: "کم‌خونی فقر آهن", desc: "شایع‌ترین نوع کم‌خونی، ناشی از کمبود آهن." },
+                            { name: "کم‌خونی مگالوبلاستیک", desc: "ناشی از کمبود ویتامین B12 یا فولیک اسید." },
+                            { name: "خونریزی حاد یا مزمن", desc: "از دست دادن خون از هر منبعی." }
+                        ],
+                        nursingHigh: [
+                            "🩸 بررسی علائم هیپرویسکوزیته مانند سردرد، سرگیجه و تاری دید",
+                            "💧 تشویق به مصرف مایعات کافی برای کاهش غلظت خون (در صورت عدم منع)",
+                            "🩺 کنترل منظم فشار خون و علائم حیاتی"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم کم‌خونی مانند خستگی، رنگ‌پریدگی و تنگی نفس",
+                            "🍎 تشویق به مصرف غذاهای غنی از آهن (گوشت قرمز، اسفناج، حبوبات) همراه با ویتامین C",
+                            "💊 تجویز مکمل آهن یا ویتامین B12 طبق دستور پزشک",
+                            "🩺 کنترل علائم حیاتی و وضعیت هوشیاری بیمار"
+                        ]
+                    },
+                    hb: { label: "هموگلوبین (Hb)", unit: "گرم/دسی‌لیتر", normal: { male: [13.5, 17.5], female: [12,
+                            15.5] }, desc: "پروتئین اصلی گلبول قرمز که وظیفه حمل اکسیژن را بر عهده دارد.",
+                        highDiseases: [{ name: "پلی‌سیتمی", desc: "افزایش تولید گلبول قرمز." }, { name: "کم‌آبی",
+                                desc: "غلظت خون افزایش می‌یابد." }],
+                        lowDiseases: [{ name: "کم‌خونی فقر آهن", desc: "شایع‌ترین علت کاهش هموگلوبین." },
+                            { name: "کم‌خونی تالاسمی", desc: "اختلال ژنتیک در ساخت هموگلوبین." },
+                            { name: "نارسایی مزمن کلیه", desc: "کاهش تولید اریتروپوئیتین." }
+                        ],
+                        nursingHigh: [
+                            "🩸 بررسی علائم افزایش ویسکوزیته خون",
+                            "💧 تشویق به مصرف مایعات کافی",
+                            "🩺 کنترل علائم حیاتی و بررسی بروز علائم قلبی-عروقی"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم کم‌خونی (خستگی، ضعف، رنگ‌پریدگی)",
+                            "🍎 رژیم غذایی غنی از آهن و ویتامین C",
+                            "💊 مصرف مکمل آهن یا اریتروپوئیتین طبق دستور پزشک",
+                            "🩺 کنترل تنفس و ضربان قلب بیمار"
+                        ]
+                    },
+                    hct: { label: "هماتوکریت (Hct)", unit: "درصد", normal: { male: [40, 52], female: [36,
+                            48] }, desc: "نسبت حجم گلبول‌های قرمز به حجم کل خون.",
+                        highDiseases: [{ name: "پلی‌سیتمی", desc: "افزایش توده گلبولی." }, { name: "کم‌آبی",
+                                desc: "کاهش حجم پلاسما." }],
+                        lowDiseases: [{ name: "کم‌خونی", desc: "هر نوع کم‌خونی باعث کاهش Hct می‌شود." },
+                            { name: "افزایش حجم پلاسما", desc: "در نارسایی قلبی و بارداری." }
+                        ],
+                        nursingHigh: [
+                            "🩸 بررسی علائم هیپرویسکوزیته",
+                            "💧 مصرف مایعات کافی",
+                            "🩺 کنترل فشار خون و علائم قلبی"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم کم‌خونی",
+                            "🍎 رژیم غذایی مناسب برای افزایش گلبول‌سازی",
+                            "💊 مصرف مکمل‌های لازم طبق دستور پزشک"
+                        ]
+                    },
+                    mcv: { label: "MCV (حجم متوسط گلبول قرمز)", unit: "فمتولیتر", normal: { male: [80, 98], female: [
+                            80, 98
+                        ] }, desc: "میانگین حجم هر گلبول قرمز که در تشخیص نوع کم‌خونی بسیار حیاتی است.",
+                        highDiseases: [{ name: "کم‌خونی مگالوبلاستیک", desc: "کمبود B12 یا فولات باعث بزرگ شدن گلبول‌ها می‌شود." },
+                            { name: "بیماری کبد الکلی", desc: "تأثیر مستقیم الکل بر مغز استخوان." },
+                            { name: "کم‌کاری تیروئید", desc: "کاهش متابولیسم سلولی." }
+                        ],
+                        lowDiseases: [{ name: "کم‌خونی فقر آهن", desc: "کمبود آهن باعث کاهش حجم گلبول می‌شود." },
+                            { name: "تالاسمی مینور", desc: "اختلال ژنتیک با MCV پایین." }
+                        ],
+                        nursingHigh: [
+                            "💊 بررسی نیاز به مکمل B12 یا فولیک اسید",
+                            "🍎 رژیم غذایی حاوی B12 (گوشت، تخم‌مرغ، لبنیات) و فولات (سبزیجات برگ سبز)",
+                            "🩺 بررسی علائم نورولوژیک در کمبود B12"
+                        ],
+                        nursingLow: [
+                            "💊 بررسی نیاز به مکمل آهن",
+                            "🍎 رژیم غذایی غنی از آهن همراه با ویتامین C",
+                            "🩺 پیگیری تشخیص تالاسمی در صورت نیاز"
+                        ]
+                    },
+                    mch: { label: "MCH (هموگلوبین متوسط هر گلبول)", unit: "پیکوگرم", normal: { male: [27, 33],
+                            female: [27, 33] }, desc: "مقدار متوسط هموگلوبین در هر گلبول قرمز.",
+                        highDiseases: [{ name: "کم‌خونی مگالوبلاستیک", desc: "افزایش هموگلوبین به دلیل بزرگ بودن گلبول." }],
+                        lowDiseases: [{ name: "کم‌خونی فقر آهن", desc: "کمبود هموگلوبین در گلبول." },
+                            { name: "تالاسمی", desc: "کمبود تولید هموگلوبین." }
+                        ],
+                        nursingHigh: [
+                            "💊 بررسی مکمل B12 و فولیک اسید",
+                            "🍎 رژیم غذایی غنی از ویتامین‌های گروه B"
+                        ],
+                        nursingLow: [
+                            "💊 بررسی مکمل آهن",
+                            "🍎 رژیم غذایی غنی از آهن"
+                        ]
+                    },
+                    mchc: { label: "MCHC (غلظت هموگلوبین در گلبول)", unit: "گرم/دسی‌لیتر", normal: { male: [32,
+                            36
+                        ], female: [32, 36] }, desc: "غلظت هموگلوبین در یک گلبول قرمز.",
+                        highDiseases: [{ name: "اسفروسیتوز ارثی", desc: "نقص در غشای گلبول که باعث افزایش غلظت هموگلوبین می‌شود." }],
+                        lowDiseases: [{ name: "کم‌خونی فقر آهن", desc: "کم‌رنگی شدید گلبول‌ها." },
+                            { name: "تالاسمی", desc: "کمبود تولید هموگلوبین." }
+                        ],
+                        nursingHigh: [
+                            "🩸 بررسی علائم همولیز (زردی، تیره شدن ادرار)",
+                            "🩺 کنترل علائم حیاتی و بررسی طحال"
+                        ],
+                        nursingLow: [
+                            "💊 بررسی مکمل آهن",
+                            "🍎 رژیم غذایی غنی از آهن",
+                            "🩺 پیگیری تشخیص تالاسمی"
+                        ]
+                    },
+                    rdw: { label: "RDW (پراکندگی اندازه گلبول قرمز)", unit: "درصد", normal: { male: [11.5, 14.5],
+                            female: [11.5, 14.5] }, desc: "شاخصی برای اندازه‌گیری تنوع اندازه گلبول‌های قرمز.",
+                        highDiseases: [{ name: "کم‌خونی فقر آهن", desc: "افزایش RDW در مراحل اولیه." },
+                            { name: "کم‌خونی ترکیبی", desc: "زمانی که دو نوع کم‌خونی همزمان وجود دارد." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً بالا بودن آن مهم است", desc: "پایین بودن RDW ارزش تشخیصی چندانی ندارد." }],
+                        nursingHigh: [
+                            "🩸 بررسی نوع کم‌خونی با مشورت پزشک",
+                            "💊 مصرف مکمل‌های لازم بر اساس تشخیص"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن RDW معمولاً جای نگرانی ندارد"
+                        ]
+                    },
+                    wbc: { label: "گلبول سفید (WBC)", unit: "سلول/میکرولیتر", normal: { male: [4500, 11000],
+                            female: [4500, 11000] }, desc: "سلول‌های اصلی سیستم ایمنی که در برابر عفونت‌ها دفاع می‌کنند.",
+                        highDiseases: [{ name: "عفونت باکتریایی", desc: "افزایش نوتروفیل‌ها در عفونت‌های باکتریایی." },
+                            { name: "لوسمی (سرطان خون)", desc: "تکثیر بدخیم سلول‌های سفید." },
+                            { name: "بیماری‌های التهابی", desc: "افزایش واکنشی در پاسخ به التهاب." }
+                        ],
+                        lowDiseases: [{ name: "عفونت‌های ویروسی", desc: "کاهش WBC در عفونت‌های ویروسی مثل آنفولانزا." },
+                            { name: "شیمی‌درمانی و رادیوتراپی", desc: "سرکوب مغز استخوان." },
+                            { name: "نارسایی مغز استخوان", desc: "آپلازی یا هیپوپلازی." }
+                        ],
+                        nursingHigh: [
+                            "🌡️ بررسی وجود تب، لرز و علائم عفونت",
+                            "🧪 انجام کشت خون در صورت نیاز",
+                            "💊 مصرف آنتی‌بیوتیک طبق دستور پزشک",
+                            "🩺 کنترل دقیق علائم حیاتی"
+                        ],
+                        nursingLow: [
+                            "🧴 رعایت اصول ایزوله و بهداشت فردی",
+                            "😷 استفاده از ماسک و شست‌وشوی مکرر دست‌ها",
+                            "🌡️ بررسی علائم عفونت",
+                            "🩺 اجتناب از تماس با افراد بیمار"
+                        ]
+                    },
+                    plt: { label: "پلاکت (PLT)", unit: "سلول/میکرولیتر", normal: { male: [150000, 400000],
+                            female: [150000, 400000] }, desc: "قطعات سلولی فاقد هسته که نقش کلیدی در هموستاز و تشکیل لخته خون دارند.",
+                        highDiseases: [{ name: "ترومبوسیتوز اولیه", desc: "بیماری میلوپرولیفراتیو با تولید بیش از حد پلاکت." },
+                            { name: "ترومبوسیتوز واکنشی", desc: "در پاسخ به التهاب، عفونت یا کم‌خونی." }
+                        ],
+                        lowDiseases: [{ name: "پورپورای ترومبوسیتوپنیک ایمنی (ITP)", desc: "بیماری خودایمن با تخریب پلاکت." },
+                            { name: "نارسایی کبدی", desc: "تولید ناکافی ترومبوپوئیتین." }
+                        ],
+                        nursingHigh: [
+                            "🩸 بررسی علائم ترومبوز (درد پا، تنگی نفس، قرمزی)",
+                            "🩺 کنترل علائم حیاتی و بررسی اندام‌ها",
+                            "💊 مصرف داروهای ضد پلاکت طبق دستور پزشک",
+                            "🚶‍♂️ تشویق به تحرک و جلوگیری از بی‌تحرکی"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم خونریزی (کبودی، خونریزی لثه، پتشی)",
+                            "🪥 استفاده از مسواک نرم و اجتناب از نخ دندان",
+                            "💉 اجتناب از تزریقات غیرضروری",
+                            "🩺 در صورت خونریزی، فشار مستقیم به محل"
+                        ]
+                    },
+                    esr: { label: "ESR (سرعت رسوب گلبول قرمز)", unit: "میلی‌متر/ساعت", normal: { male: [0, 15],
+                            female: [0, 20] }, desc: "میزان ته‌نشینی گلبول‌های قرمز در یک ساعت. یک شاخص غیراختصاصی التهاب است.",
+                        highDiseases: [{ name: "بیماری‌های التهابی سیستمیک", desc: "آرتریت روماتوئید، لوپوس." },
+                            { name: "عفونت‌های باکتریایی", desc: "افزایش ESR در عفونت‌های شدید." },
+                            { name: "بدخیمی‌ها", desc: "میلوم مولتیپل و لنفوم." }
+                        ],
+                        lowDiseases: [{ name: "پلی‌سیتمی", desc: "افزایش ویسکوزیته خون." },
+                            { name: "کم‌فیبرینوژنمی", desc: "بیماری‌های کبدی شدید." }
+                        ],
+                        nursingHigh: [
+                            "🌡️ بررسی علائم التهاب (تب، درد، تورم)",
+                            "🩺 معاینه فیزیکی کامل",
+                            "💊 مصرف داروهای ضدالتهاب طبق دستور پزشک",
+                            "🧪 پیگیری آزمایش‌های تکمیلی"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن ESR معمولاً ارزش تشخیصی ندارد مگر در موارد خاص"
+                        ]
+                    },
+                    pt: { label: "PT (زمان پروترومبین)", unit: "ثانیه", normal: { male: [11, 13.5], female: [11,
+                            13.5] }, desc: "زمان لخته شدن خون از طریق مسیر خارجی. برای پایش درمان با وارفارین استفاده می‌شود.",
+                        highDiseases: [{ name: "نارسایی کبدی", desc: "کاهش تولید عوامل انعقادی." },
+                            { name: "کمبود ویتامین K", desc: "ناشی از سوءتغذیه یا مصرف آنتی‌بیوتیک." },
+                            { name: "مصرف وارفارین", desc: "درمان ضد انعقاد." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً کوتاهی PT اهمیت بالینی ندارد", desc: "می‌تواند ناشی از خطای آزمایشگاهی باشد." }],
+                        nursingHigh: [
+                            "🩸 بررسی علائم خونریزی (کبودی، خونریزی لثه، هماتوم)",
+                            "💊 تنظیم دوز وارفارین طبق دستور پزشک",
+                            "🥬 آموزش در مورد منابع ویتامین K (سبزیجات برگ سبز)",
+                            "🩺 کنترل PT/INR به صورت منظم"
+                        ],
+                        nursingLow: [
+                            "✅ کوتاهی PT معمولاً نیاز به اقدام خاصی ندارد"
+                        ]
+                    },
+                    inr: { label: "INR (نسبت نرمال شده بین‌المللی)", unit: "عدد", normal: { male: [0.8, 1.2],
+                            female: [0.8, 1.2] }, desc: "نسبت PT بیمار به PT کنترل برای پایش استاندارد درمان با وارفارین.",
+                        highDiseases: [{ name: "نارسایی کبدی", desc: "کاهش تولید فاکتورهای انعقادی." },
+                            { name: "دریافت بیش از حد وارفارین", desc: "INR بالای ۴ خطر خونریزی شدید دارد." }
+                        ],
+                        lowDiseases: [{ name: "خطر ترومبوز", desc: "در بیماران تحت درمان با وارفارین، INR پایین یعنی دوز دارو کافی نیست." }],
+                        nursingHigh: [
+                            "🩸 بررسی علائم خونریزی",
+                            "💊 کاهش دوز وارفارین طبق دستور پزشک",
+                            "🥬 کنترل مصرف ویتامین K",
+                            "🩺 پیگیری منظم INR"
+                        ],
+                        nursingLow: [
+                            "⚠️ خطر ترومبوز - بررسی علائم DVT و PE",
+                            "💊 افزایش دوز وارفارین طبق دستور پزشک",
+                            "🩺 پیگیری منظم INR"
+                        ]
+                    },
+                    ptt: { label: "PTT (زمان ترومبوپلاستین نسبی)", unit: "ثانیه", normal: { male: [25, 35],
+                            female: [25, 35] }, desc: "زمان لخته شدن از طریق مسیر داخلی. برای تشخیص هموفیلی استفاده می‌شود.",
+                        highDiseases: [{ name: "هموفیلی A (کمبود فاکتور VIII)", desc: "شایع‌ترین اختلال انعقادی ارثی." },
+                            { name: "هموفیلی B (کمبود فاکتور IX)", desc: "بیماری کریسمس." },
+                            { name: "دریافت هپارین", desc: "افزایش PTT به دلیل اثر ضد انعقاد." }
+                        ],
+                        lowDiseases: [{ name: "خطر ترومبوز", desc: "PTT کوتاه می‌تواند با افزایش خطر ترومبوز همراه باشد." }],
+                        nursingHigh: [
+                            "🩸 بررسی علائم خونریزی",
+                            "💊 تنظیم دوز هپارین طبق دستور پزشک",
+                            "🩺 کنترل PTT به صورت منظم"
+                        ],
+                        nursingLow: [
+                            "⚠️ خطر ترومبوز - بررسی علائم DVT و PE"
+                        ]
+                    },
+                    fibrinogen: { label: "فیبرینوژن (Fibrinogen)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [200,
+                            400
+                        ], female: [200, 400] }, desc: "پروتئینی که در مرحله نهایی انعقاد به فیبرین تبدیل می‌شود و لخته را ایجاد می‌کند.",
+                        highDiseases: [{ name: "واکنش فاز حاد", desc: "در پاسخ به التهاب و عفونت افزایش می‌یابد." },
+                            { name: "بارداری", desc: "افزایش فیبرینوژن در سه ماهه سوم بارداری طبیعی است." }
+                        ],
+                        lowDiseases: [{ name: "نارسایی شدید کبدی", desc: "کاهش سنتز پروتئین." },
+                            { name: "DIC (انعقاد منتشر داخل عروقی)", desc: "مصرف شدید عوامل انعقادی." }
+                        ],
+                        nursingHigh: [
+                            "⚠️ خطر ترومبوز - بررسی علائم DVT و PE",
+                            "🩺 کنترل علائم حیاتی",
+                            "💊 مصرف داروهای ضد انعقاد طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم خونریزی",
+                            "🩺 بررسی علائم DIC (خونریزی منتشر، کاهش فشار خون)",
+                            "💊 جایگزینی فیبرینوژن طبق دستور پزشک"
+                        ]
+                    },
+                    d_dimer: { label: "D-Dimer", unit: "نانوگرم/میلی‌لیتر", normal: { male: [0, 500], female: [0,
+                            500
+                        ] }, desc: "محصول تجزیه فیبرین که نشان‌دهنده فعالیت سیستم فیبرینولیتیک و وجود ترومبوز است.",
+                        highDiseases: [{ name: "ترومبوز وری عمقی (DVT)", desc: "لخته در وریدهای عمقی پا." },
+                            { name: "آمبولی ریه (PE)", desc: "لخته به شریان ریوی رفته است." },
+                            { name: "سندرم DIC", desc: "انعقاد منتشر داخل عروقی." }
+                        ],
+                        lowDiseases: [{ name: "نرمال بودن معمولاً خوب است", desc: "به این معنی است که فرآیند ترومبوز حاد وجود ندارد." }],
+                        nursingHigh: [
+                            "⚠️ اورژانس! بررسی فوری علائم DVT (تورم، درد پا) و PE (تنگی نفس، درد قفسه سینه)",
+                            "🩺 کنترل علائم حیاتی و اکسیژن‌سنجی",
+                            "💊 شروع درمان ضد انعقاد طبق دستور پزشک",
+                            "🛌 استراحت مطلق در صورت تشخیص DVT"
+                        ],
+                        nursingLow: [
+                            "✅ نرمال بودن D-Dimer معمولاً نشانه عدم وجود ترومبوز حاد است"
+                        ]
+                    },
+                    factors: { label: "عوامل انعقادی (II, V, VII, VIII, IX, X)", unit: "درصد", normal: { male: [
+                            50, 150
+                        ], female: [50, 150] }, desc: "پروتئین‌های سرمی که به صورت زنجیره‌ای در آبشار انعقاد شرکت می‌کنند.",
+                        highDiseases: [{ name: "افزایش عوامل انعقادی", desc: "می‌تواند خطر ترومبوز را افزایش دهد." }],
+                        lowDiseases: [{ name: "هموفیلی", desc: "کمبود فاکتور VIII (هموفیلی A) یا فاکتور IX (هموفیلی B)." },
+                            { name: "نارسایی کبدی", desc: "کبد محل اصلی سنتز عوامل انعقادی است." },
+                            { name: "کمبود ویتامین K", desc: "فاکتورهای II، VII، IX و X به ویتامین K وابسته هستند." }
+                        ],
+                        nursingHigh: [
+                            "⚠️ خطر ترومبوز - بررسی علائم DVT و PE",
+                            "🩺 کنترل علائم حیاتی"
+                        ],
+                        nursingLow: [
+                            "🩸 بررسی علائم خونریزی (کبودی، خونریزی لثه)",
+                            "💊 جایگزینی فاکتورهای انعقادی طبق دستور پزشک",
+                            "🥬 آموزش در مورد منابع ویتامین K"
+                        ]
+                    },
+                    ast: { label: "AST (آسپارتات آمینوترانسفراز)", unit: "واحد/لیتر", normal: { male: [8, 40],
+                            female: [8, 40] }, desc: "آنزیم داخل سلولی که در کبد، قلب و عضلات وجود دارد. افزایش آن نشانه آسیب سلولی است.",
+                        highDiseases: [{ name: "هپاتیت حاد و مزمن", desc: "آسیب سلول‌های کبدی." },
+                            { name: "سکته قلبی", desc: "افزایش AST در ساعات اولیه سکته." },
+                            { name: "آسیب عضلانی", desc: "تروما، تمرین شدید و دیستروفی عضلانی." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً پایین بودن آن خوب است", desc: "کمبود ویتامین B6 می‌تواند باعث کاهش شود." }],
+                        nursingHigh: [
+                            "🫁 بررسی علائم آسیب کبدی (زردی، تهوع، خستگی)",
+                            "🩺 معاینه فیزیکی و بررسی علائم قلبی (درد قفسه سینه)",
+                            "💊 اجتناب از داروهای هپاتوتوکسیک",
+                            "🥗 رژیم غذایی کم چرب و پرهیز از الکل"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن AST معمولاً جای نگرانی ندارد"
+                        ]
+                    },
+                    alt: { label: "ALT (آلانین آمینوترانسفراز)", unit: "واحد/لیتر", normal: { male: [7, 56],
+                            female: [7, 56] }, desc: "آنزیم اختصاصی کبد (سیتوزولی) که افزایش آن نشانه مستقیم آسیب هپاتوسیت است.",
+                        highDiseases: [{ name: "کبد چرب غیرالکلی (NAFLD)", desc: "شایع‌ترین علت افزایش ALT در جهان." },
+                            { name: "هپاتیت ویروسی", desc: "عفونت با ویروس‌های هپاتیت." },
+                            { name: "مصرف الکل", desc: "بیماری کبد الکلی." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً پایین بودن آن خوب است", desc: "کمبود ویتامین B6 می‌تواند باعث کاهش شود." }],
+                        nursingHigh: [
+                            "🫁 بررسی علائم آسیب کبدی (زردی، خستگی، تهوع)",
+                            "🥗 رژیم غذایی کم چرب و غنی از میوه و سبزیجات",
+                            "🚫 پرهیز از مصرف الکل و داروهای هپاتوتوکسیک",
+                            "🩺 کنترل وزن و تشویق به کاهش وزن در صورت اضافه وزن",
+                            "💊 مصرف داروهای محافظ کبد طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن ALT معمولاً جای نگرانی ندارد"
+                        ]
+                    },
+                    alp: { label: "ALP (آلکالین فسفاتاز)", unit: "واحد/لیتر", normal: { male: [44, 147],
+                            female: [44, 147] }, desc: "آنزیم موجود در کبد (مجاری صفراوی)، استخوان و روده. افزایش آن نشانه انسداد صفراوی یا بیماری استخوان است.",
+                        highDiseases: [{ name: "انسداد مجاری صفراوی", desc: "سنگ کیسه صفرا، تومور پانکراس." },
+                            { name: "بیماری‌های استخوانی", desc: "پوکی استخوان، بیماری پاژه." },
+                            { name: "بارداری", desc: "منشأ جفتی دارد." }
+                        ],
+                        lowDiseases: [{ name: "کم‌کاری تیروئید", desc: "کاهش متابولیسم." },
+                            { name: "کمبود روی و منیزیم", desc: "برای عملکرد ALP ضروری هستند." }
+                        ],
+                        nursingHigh: [
+                            "🫁 بررسی علائم انسداد صفراوی (زردی، خارش، ادرار تیره)",
+                            "🩺 معاینه شکم و بررسی بزرگی کبد",
+                            "🥗 رژیم غذایی کم چرب",
+                            "💊 مصرف داروهای کاهنده ALP طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن ALP معمولاً نیاز به اقدام خاصی ندارد"
+                        ]
+                    },
+                    bilirubin_total: { label: "بیلی‌روبین توتال (Total Bilirubin)", unit: "میلی‌گرم/دسی‌لیتر",
+                        normal: { male: [0.2, 1], female: [0.2, 1] },
+                        desc: "محصول نهایی تجزیه هموگلوبین. افزایش آن باعث زردی (یرقان) می‌شود.",
+                        highDiseases: [{ name: "یرقان هپاتوسلولار", desc: "هپاتیت و سیروز." },
+                            { name: "یرقان انسدادی", desc: "انسداد مجاری صفراوی." },
+                            { name: "همولیز", desc: "تخریب افزایش یافته گلبول‌های قرمز." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً پایین بودن آن خوب است", desc: "مگر در بیماری‌های نادر." }],
+                        nursingHigh: [
+                            "🟡 بررسی علائم زردی (زردی پوست و چشم، ادرار تیره، مدفوع روشن)",
+                            "🩺 بررسی خارش پوست و مراقبت از پوست",
+                            "🥗 رژیم غذایی مناسب برای کبد",
+                            "💊 مصرف داروهای کاهنده بیلی‌روبین طبق دستور پزشک",
+                            "🧪 پیگیری آزمایش‌های کبدی"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن بیلی‌روبین معمولاً جای نگرانی ندارد"
+                        ]
+                    },
+                    bilirubin_direct: { label: "بیلی‌روبین مستقیم (Direct Bilirubin)", unit: "میلی‌گرم/دسی‌لیتر",
+                        normal: { male: [0, 0.3], female: [0, 0.3] },
+                        desc: "بیلی‌روبین کونژوگه (متصل به اسید گلوکورونیک) که محلول در آب است.",
+                        highDiseases: [{ name: "انسداد مجاری صفراوی", desc: "افزایش بیلی‌روبین مستقیم نشانه انسداد است." },
+                            { name: "هپاتیت و سیروز", desc: "آسیب سلول‌های کبدی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "پایین بودن آن ارزش تشخیصی ندارد." }],
+                        nursingHigh: [
+                            "🟡 بررسی علائم انسداد صفراوی (زردی، خارش، ادرار تیره)",
+                            "🩺 معاینه شکم",
+                            "🥗 رژیم غذایی کم چرب",
+                            "💊 مصرف داروهای کاهنده بیلی‌روبین طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن بیلی‌روبین مستقیم طبیعی است"
+                        ]
+                    },
+                    ggt: { label: "GGT (گاما گلوتامیل ترانسفراز)", unit: "واحد/لیتر", normal: { male: [9, 48],
+                            female: [9, 48] }, desc: "آنزیم غشایی که در سلول‌های کبدی و مجاری صفراوی وجود دارد. شاخص بسیار حساس برای بیماری کبدی.",
+                        highDiseases: [{ name: "مصرف الکل", desc: "حساس‌ترین نشانه برای مصرف مزمن الکل." },
+                            { name: "بیماری کبد چرب", desc: "NAFLD و AFLD." },
+                            { name: "انسداد صفراوی", desc: "سنگ یا تومور." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً پایین بودن آن خوب است", desc: "کمبود منیزیم می‌تواند باعث کاهش شود." }],
+                        nursingHigh: [
+                            "🚫 پرهیز کامل از مصرف الکل",
+                            "🥗 رژیم غذایی کم چرب و غنی از آنتی‌اکسیدان‌ها",
+                            "🩺 کنترل وزن و تشویق به کاهش وزن",
+                            "💊 مصرف داروهای محافظ کبد طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن GGT معمولاً جای نگرانی ندارد"
+                        ]
+                    },
+                    fbs: { label: "قند خون ناشتا (FBS)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [70, 100],
+                            female: [70, 100] }, desc: "میزان گلوکز خون پس از ۸ تا ۱۲ ساعت ناشتایی. معیار اصلی تشخیص دیابت است.",
+                        highDiseases: [{ name: "پیش‌دیابت", desc: "FBS بین ۱۰۰ تا ۱۲۵." },
+                            { name: "دیابت ملیتوس نوع ۲", desc: "FBS ≥ ۱۲۶ در دو نوبت." }
+                        ],
+                        lowDiseases: [{ name: "هیپوگلیسمی ناشتا", desc: "FBS < ۷۰." },
+                            { name: "انسولینوم", desc: "تومور پانکراس ترشح‌کننده انسولین." }
+                        ],
+                        nursingHigh: [
+                            "🍬 آموزش در مورد رژیم غذایی مناسب دیابت (کم کربوهیدرات)",
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم",
+                            "💊 مصرف داروهای کاهنده قند طبق دستور پزشک",
+                            "🩸 آموزش پایش منظم قند خون در منزل",
+                            "🩺 پیگیری منظم HbA1c"
+                        ],
+                        nursingLow: [
+                            "🍬 مصرف یک منبع قند سریع‌الاثر (آبمیوه، قند) در صورت بروز علائم",
+                            "🩸 بررسی علائم هیپوگلیسمی (تعریق، لرزش، گیجی)",
+                            "🍽️ تنظیم وعده‌های غذایی مکرر و کوچک",
+                            "🩺 پیگیری علت هیپوگلیسمی با پزشک"
+                        ]
+                    },
+                    hba1c: { label: "هموگلوبین A1C (HbA1c)", unit: "درصد", normal: { male: [4, 5.6],
+                            female: [4, 5.6] }, desc: "میانگین قند خون در ۲ تا ۳ ماه گذشته. برای پایش کنترل دیابت استفاده می‌شود.",
+                        highDiseases: [{ name: "پیش‌دیابت", desc: "A1C بین ۵.۷ تا ۶.۴ درصد." },
+                            { name: "دیابت کنترل‌نشده", desc: "A1C ≥ ۶.۵ درصد." }
+                        ],
+                        lowDiseases: [{ name: "هیپوگلیسمی مکرر", desc: "افت مکرر قند خون." },
+                            { name: "بیماری کلیوی پیشرفته", desc: "A1C ممکن است به طور کاذب پایین بیاید." }
+                        ],
+                        nursingHigh: [
+                            "🍬 آموزش رژیم غذایی مناسب دیابت",
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم",
+                            "💊 مصرف داروهای کاهنده قند طبق دستور پزشک",
+                            "🩸 آموزش پایش منظم قند خون",
+                            "🩺 پیگیری منظم A1C هر ۳ ماه یکبار"
+                        ],
+                        nursingLow: [
+                            "🍬 بررسی علائم هیپوگلیسمی",
+                            "🍽️ تنظیم وعده‌های غذایی مکرر",
+                            "🩺 پیگیری علت کاهش A1C با پزشک"
+                        ]
+                    },
+                    cholesterol: { label: "کلسترول تام (Total Cholesterol)", unit: "میلی‌گرم/دسی‌لیتر",
+                        normal: { male: [125, 200], female: [125, 200] },
+                        desc: "مجموع کلسترول HDL، LDL و VLDL در خون. ارزیابی خطر قلبی-عروقی.",
+                        highDiseases: [{ name: "هیپرکلسترولمی", desc: "افزایش خطر بیماری عروق کرونر." },
+                            { name: "کم‌کاری تیروئید", desc: "کاهش متابولیسم." }
+                        ],
+                        lowDiseases: [{ name: "پرکاری تیروئید", desc: "افزایش متابولیسم." },
+                            { name: "سوءتغذیه", desc: "کمبود کالری." }
+                        ],
+                        nursingHigh: [
+                            "🥗 رژیم غذایی کم چرب (کاهش چربی اشباع و ترانس)",
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم",
+                            "💊 مصرف داروهای کاهنده چربی طبق دستور پزشک",
+                            "🩺 کنترل وزن و شاخص توده بدنی",
+                            "🚫 پرهیز از مصرف دخانیات"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن کلسترول معمولاً خوب است مگر در موارد سوءتغذیه"
+                        ]
+                    },
+                    trig: { label: "تری‌گلیسیرید (Triglyceride)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [50,
+                            150
+                        ], female: [50, 150] }, desc: "نوعی چربی که از کبد و رژیم غذایی ساخته می‌شود و منبع انرژی است.",
+                        highDiseases: [{ name: "سندروم متابولیک", desc: "افزایش تری‌گلیسیرید یکی از معیارهای آن است." },
+                            { name: "دیابت کنترل‌نشده", desc: "انسولین مقاومتی." }
+                        ],
+                        lowDiseases: [{ name: "سوءتغذیه", desc: "مصرف کم چربی." },
+                            { name: "پرکاری تیروئید", desc: "افزایش مصرف انرژی." }
+                        ],
+                        nursingHigh: [
+                            "🥗 کاهش مصرف کربوهیدرات ساده و قندها",
+                            "🚫 پرهیز از مصرف الکل",
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم",
+                            "💊 مصرف داروهای کاهنده تری‌گلیسیرید طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن تری‌گلیسیرید معمولاً خوب است"
+                        ]
+                    },
+                    hdl: { label: "کلسترول خوب (HDL)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [40, 60],
+                            female: [50, 65] }, desc: "کلسترول با چگالی بالا که با حمل کلسترول از بافت‌ها به کبد، اثر محافظتی دارد.",
+                        highDiseases: [{ name: "ورزش منظم", desc: "افزایش HDL (اثر محافظتی)." },
+                            { name: "مصرف روغن زیتون", desc: "تأثیر مثبت بر HDL." }
+                        ],
+                        lowDiseases: [{ name: "افزایش خطر قلبی-عروقی", desc: "HDL پایین یک عامل خطر مستقل است." },
+                            { name: "سیگار کشیدن", desc: "کاهش HDL." }
+                        ],
+                        nursingHigh: [
+                            "✅ افزایش HDL معمولاً مفید است - ادامه سبک زندگی سالم"
+                        ],
+                        nursingLow: [
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم (هوازی)",
+                            "🥗 رژیم غذایی حاوی چربی‌های مفید (روغن زیتون، آجیل، ماهی)",
+                            "🚫 پرهیز از دخانیات",
+                            "🩺 کنترل وزن"
+                        ]
+                    },
+                    ldl: { label: "کلسترول بد (LDL)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [70, 130],
+                            female: [70, 130] }, desc: "کلسترول با چگالی پایین که عامل اصلی تشکیل پلاک آترواسکلروتیک است.",
+                        highDiseases: [{ name: "هیپرکلسترولمی فامیلی", desc: "بیماری ژنتیک." },
+                            { name: "آترواسکلروز", desc: "رسوب چربی در دیواره عروق." }
+                        ],
+                        lowDiseases: [{ name: "معمولاً پایین بودن آن خوب است", desc: "مگر اینکه به دلیل سوءتغذیه شدید باشد." }],
+                        nursingHigh: [
+                            "🥗 رژیم غذایی کم چربی اشباع و ترانس",
+                            "🏃‍♂️ تشویق به فعالیت بدنی منظم",
+                            "💊 مصرف استاتین‌ها طبق دستور پزشک",
+                            "🩺 کنترل وزن و فشار خون",
+                            "🚫 پرهیز از دخانیات"
+                        ],
+                        nursingLow: [
+                            "✅ پایین بودن LDL معمولاً خوب است"
+                        ]
+                    },
+                    urine_ph: { label: "pH ادرار", unit: "عدد", normal: { male: [4.5, 8], female: [4.5,
+                            8] }, desc: "میزان اسیدی یا قلیایی بودن ادرار که تحت تأثیر رژیم غذایی و برخی بیماری‌ها تغییر می‌کند.",
+                        highDiseases: [{ name: "عفونت ادراری", desc: "باکتری‌ها ادرار را قلیایی می‌کنند." },
+                            { name: "رژیم گیاهخواری", desc: "مصرف زیاد میوه و سبزیجات." }
+                        ],
+                        lowDiseases: [{ name: "دیابت کنترل‌نشده", desc: "کتواسیدوز دیابتی." },
+                            { name: "روزه‌داری طولانی", desc: "سوختن چربی." }
+                        ],
+                        nursingHigh: [
+                            "🧪 بررسی وجود عفونت ادراری (کشت ادرار)",
+                            "💧 مصرف مایعات کافی",
+                            "🩺 بررسی علائم عفونت ادراری"
+                        ],
+                        nursingLow: [
+                            "🧪 بررسی کتون ادرار در دیابت",
+                            "🍽️ تنظیم رژیم غذایی",
+                            "🩺 پیگیری علت اسیدی شدن ادرار"
+                        ]
+                    },
+                    urine_specific: { label: "وزن مخصوص ادرار (Specific Gravity)", unit: "عدد", normal: { male: [
+                            1.005, 1.03
+                        ], female: [1.005, 1.03] }, desc: "غلظت ادرار که نشان‌دهنده توانایی کلیه در تغلیظ ادرار است.",
+                        highDiseases: [{ name: "کم‌آبی", desc: "ادرار غلیظ." },
+                            { name: "نارسایی کلیه", desc: "از دست دادن توانایی تغلیظ." }
+                        ],
+                        lowDiseases: [{ name: "دیابت بی‌مزه", desc: "کلیه آب را دفع می‌کند." },
+                            { name: "مصرف زیاد مایعات", desc: "ادرار رقیق." }
+                        ],
+                        nursingHigh: [
+                            "💧 بررسی وضعیت هیدراسیون بیمار",
+                            "🩺 کنترل علائم کم‌آبی (خشکی دهان، کاهش تورگور پوست)",
+                            "💧 تشویق به مصرف مایعات (در صورت عدم منع)"
+                        ],
+                        nursingLow: [
+                            "🧪 بررسی دیابت بی‌مزه (تست محرومیت از آب)",
+                            "🩺 کنترل تعادل مایعات و الکترولیت‌ها"
+                        ]
+                    },
+                    urine_protein: { label: "پروتئین ادرار (Protein)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [
+                            0, 5
+                        ], female: [0, 5] }, desc: "وجود پروتئین در ادرار که نشانه آسیب گلومرولی یا لوله‌ای است.",
+                        highDiseases: [{ name: "نفروپاتی دیابتی", desc: "شایع‌ترین علت پروتئین‌وری." },
+                            { name: "گلومرولونفریت", desc: "التهاب گلومرول." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "پروتئین نباید در ادرار وجود داشته باشد." }],
+                        nursingHigh: [
+                            "🩺 بررسی فشار خون و ادم",
+                            "🧪 پیگیری پروتئین ۲۴ ساعته ادرار",
+                            "💊 مصرف داروهای کاهنده فشار خون (ACEI/ARB) طبق دستور پزشک",
+                            "🥗 رژیم غذایی کم نمک و محدودیت پروتئین در صورت نیاز"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود پروتئین در ادرار طبیعی است"
+                        ]
+                    },
+                    urine_glucose: { label: "قند ادرار (Glucose)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [0,
+                            0
+                        ], female: [0, 0] }, desc: "وجود گلوکز در ادرار که معمولاً نشانه دیابت کنترل‌نشده است.",
+                        highDiseases: [{ name: "دیابت ملیتوس کنترل‌نشده", desc: "گلوکز از حد آستانه کلیه عبور می‌کند." },
+                            { name: "بارداری", desc: "کاهش آستانه کلیوی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "قند نباید در ادرار باشد." }],
+                        nursingHigh: [
+                            "🍬 بررسی قند خون ناشتا و HbA1c",
+                            "🩸 آموزش پایش قند خون در منزل",
+                            "🍽️ رژیم غذایی مناسب دیابت",
+                            "💊 تنظیم داروهای کاهنده قند طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود قند در ادرار طبیعی است"
+                        ]
+                    },
+                    urine_ketone: { label: "کتون ادرار (Ketone)", unit: "میلی‌گرم/دسی‌لیتر", normal: { male: [0,
+                            0
+                        ], female: [0, 0] }, desc: "محصولات متابولیسم چربی که در حالت ناشتا یا دیابت کنترل‌نشده تولید می‌شوند.",
+                        highDiseases: [{ name: "کتواسیدوز دیابتی (DKA)", desc: "اورژانس دیابت نوع ۱." },
+                            { name: "گرسنگی طولانی مدت", desc: "سوختن چربی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "در حالت عادی کتون در ادرار نداریم." }],
+                        nursingHigh: [
+                            "⚠️ اورژانس! بررسی علائم DKA (تهوع، استفراغ، درد شکم، تنفس کوسمائول)",
+                            "🩸 بررسی قند خون و الکترولیت‌ها",
+                            "💧 مایعات وریدی و انسولین طبق دستور پزشک",
+                            "🩺 کنترل علائم حیاتی و وضعیت هوشیاری"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود کتون در ادرار طبیعی است"
+                        ]
+                    },
+                    urine_rbc: { label: "گلبول قرمز ادرار (RBC)", unit: "سلول/HPF", normal: { male: [0, 3],
+                            female: [0, 3] }, desc: "وجود گلبول قرمز در ادرار که نشانه خونریزی در سیستم ادراری است.",
+                        highDiseases: [{ name: "عفونت ادراری", desc: "همراه با WBC و باکتری." },
+                            { name: "سنگ کلیه", desc: "آسیب به مخاط." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "تعداد کم RBC در ادرار طبیعی است." }],
+                        nursingHigh: [
+                            "🩸 بررسی منشأ خونریزی (سیستوسکوپی، سونوگرافی)",
+                            "🧪 کشت ادرار در صورت عفونت",
+                            "💧 مصرف مایعات کافی",
+                            "🩺 بررسی علائم سنگ کلیه (درد پهلو، تهوع)"
+                        ],
+                        nursingLow: [
+                            "✅ تعداد کم RBC در ادرار طبیعی است"
+                        ]
+                    },
+                    urine_wbc: { label: "گلبول سفید ادرار (WBC)", unit: "سلول/HPF", normal: { male: [0, 5],
+                            female: [0, 5] }, desc: "وجود گلبول سفید در ادرار نشانه عفونت یا التهاب دستگاه ادراری است.",
+                        highDiseases: [{ name: "عفونت ادراری (UTI)", desc: "شایع‌ترین علت." },
+                            { name: "پیلونفریت", desc: "عفونت کلیه." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "WBC نباید در ادرار وجود داشته باشد." }],
+                        nursingHigh: [
+                            "🧪 کشت ادرار و آنتی‌بیوگرام",
+                            "💊 مصرف آنتی‌بیوتیک طبق دستور پزشک",
+                            "💧 مصرف مایعات کافی",
+                            "🩺 بررسی علائم عفونت (تب، سوزش ادرار، تکرر ادرار)"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود WBC در ادرار طبیعی است"
+                        ]
+                    },
+                    urine_bacteria: { label: "باکتری ادرار (Bacteria)", unit: "مشاهده", normal: { male: [0, 0],
+                            female: [0, 0] }, desc: "وجود باکتری در ادرار که نشانه عفونت ادراری است.",
+                        highDiseases: [{ name: "عفونت ادراری علامت‌دار", desc: "دیسوری، تکرر ادرار." },
+                            { name: "باکتریوری بدون علامت", desc: "در بارداری و سالمندان." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "ادرار باید استریل باشد." }],
+                        nursingHigh: [
+                            "🧪 کشت ادرار و آنتی‌بیوگرام",
+                            "💊 مصرف آنتی‌بیوتیک طبق دستور پزشک",
+                            "💧 مصرف مایعات کافی",
+                            "🩺 بررسی علائم عفونت",
+                            "🧴 آموزش بهداشت فردی (نحوه صحیح توالت رفتن)"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود باکتری در ادرار طبیعی است"
+                        ]
+                    },
+                    stool_occult: { label: "خون مخفی مدفوع (Occult Blood)", unit: "مشاهده", normal: { male: [0,
+                            0
+                        ], female: [0, 0] }, desc: "وجود خون در مدفوع که با چشم غیرمسلح قابل مشاهده نیست و نیاز به آزمایش شیمیایی دارد.",
+                        highDiseases: [{ name: "پولیپ یا سرطان کولورکتال", desc: "غربالگری سرطان روده بزرگ." },
+                            { name: "زخم پپتیک", desc: "خونریزی گوارشی فوقانی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "خون در مدفوع نباید وجود داشته باشد." }],
+                        nursingHigh: [
+                            "🩸 بررسی علائم خونریزی گوارشی (مدفوع سیاه، هماتوچزی)",
+                            "🩺 معاینه فیزیکی و بررسی کم‌خونی",
+                            "🧪 کولونوسکوپی یا آندوسکوپی طبق دستور پزشک",
+                            "💊 درمان علت زمینه‌ای"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود خون در مدفوع طبیعی است"
+                        ]
+                    },
+                    stool_wbc: { label: "گلبول سفید مدفوع (WBC)", unit: "سلول/HPF", normal: { male: [0, 0],
+                            female: [0, 0] }, desc: "وجود گلبول سفید در مدفوع نشانه التهاب یا عفونت باکتریایی روده است.",
+                        highDiseases: [{ name: "اسهال باکتریایی", desc: "سالمونلا، شیگلا." },
+                            { name: "بیماری التهابی روده", desc: "کرون و کولیت اولسراتیو." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "WBC در مدفوع طبیعی نیست." }],
+                        nursingHigh: [
+                            "🧪 کشت مدفوع",
+                            "💊 مصرف آنتی‌بیوتیک طبق دستور پزشک",
+                            "💧 جبران مایعات از دست رفته",
+                            "🩺 بررسی علائم التهاب روده"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود WBC در مدفوع طبیعی است"
+                        ]
+                    },
+                    stool_rbc: { label: "گلبول قرمز مدفوع (RBC)", unit: "سلول/HPF", normal: { male: [0, 0],
+                            female: [0, 0] }, desc: "وجود گلبول قرمز در مدفوع نشانه خونریزی فعال در دستگاه گوارش است.",
+                        highDiseases: [{ name: "خونریزی گوارشی", desc: "از هر نقطه دستگاه گوارش." },
+                            { name: "پولیپ یا تومور", desc: "علت جدی خونریزی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "RBC در مدفوع طبیعی نیست." }],
+                        nursingHigh: [
+                            "🩸 بررسی علائم خونریزی گوارشی",
+                            "🩺 بررسی علائم کم‌خونی و همودینامیک",
+                            "🧪 آندوسکوپی یا کولونوسکوپی طبق دستور پزشک"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود RBC در مدفوع طبیعی است"
+                        ]
+                    },
+                    stool_fat: { label: "چربی مدفوع (Fat)", unit: "مشاهده", normal: { male: [0, 0],
+                            female: [0, 0] }, desc: "وجود چربی در مدفوع که نشانه سوءجذب (مال‌آبسورپشن) است.",
+                        highDiseases: [{ name: "بیماری سلیاک", desc: "حساسیت به گلوتن." },
+                            { name: "نارسایی پانکراس", desc: "کمبود آنزیم‌های گوارشی." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "مدفوع نباید چربی قابل مشاهده داشته باشد." }],
+                        nursingHigh: [
+                            "🥗 رژیم غذایی کم چرب",
+                            "💊 مصرف مکمل آنزیم‌های پانکراس طبق دستور پزشک",
+                            "🩺 بررسی علائم سوءجذب (کاهش وزن، اسهال چرب)",
+                            "🧪 آزمایش‌های تشخیصی سلیاک"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود چربی در مدفوع طبیعی است"
+                        ]
+                    },
+                    stool_mucus: { label: "مخاط مدفوع (Mucus)", unit: "مشاهده", normal: { male: [0, 0],
+                            female: [0, 0] }, desc: "وجود مخاط در مدفوع که نشانه تحریک یا التهاب روده است.",
+                        highDiseases: [{ name: "سندرم روده تحریک‌پذیر (IBS)", desc: "علت شایع." },
+                            { name: "بیماری التهابی روده", desc: "کرون و کولیت." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "مخاط در مدفوع طبیعی نیست." }],
+                        nursingHigh: [
+                            "🩺 بررسی علائم بیماری التهابی روده",
+                            "🥗 رژیم غذایی مناسب (FODMAP پایین در IBS)",
+                            "💊 مصرف داروهای ضدالتهاب طبق دستور پزشک",
+                            "🧪 کولونوسکوپی در صورت نیاز"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود مخاط در مدفوع طبیعی است"
+                        ]
+                    },
+                    stool_parasite: { label: "انگل یا تخم انگل مدفوع (Parasite)", unit: "مشاهده", normal: { male: [
+                            0, 0
+                        ], female: [0, 0] }, desc: "وجود انگل در مدفوع که نشانه عفونت انگلی دستگاه گوارش است.",
+                        highDiseases: [{ name: "ژیاردیازیس", desc: "آلودگی به ژیاردیا لامبلیا." },
+                            { name: "آمیبیاز", desc: "انتاموبا هیستولیتیکا." }
+                        ],
+                        lowDiseases: [{ name: "طبیعی است", desc: "مدفوع عاری از انگل است." }],
+                        nursingHigh: [
+                            "🧪 انجام آزمایش مدفوع برای شناسایی انگل",
+                            "💊 مصرف داروهای ضد انگل طبق دستور پزشک",
+                            "🧴 آموزش بهداشت فردی و شست‌وشوی دست‌ها",
+                            "💧 مصرف مایعات کافی برای جبران اسهال"
+                        ],
+                        nursingLow: [
+                            "✅ عدم وجود انگل در مدفوع طبیعی است"
+                        ]
+                    }
+                }
+            };
+
+            // Build ANA parameters
+            var anaCategoryKeys = {
+                anaCbcParams: ['rbc', 'hb', 'hct', 'mcv', 'mch', 'mchc', 'rdw', 'wbc', 'plt'],
+                anaCoagulationParams: ['esr', 'pt', 'inr', 'ptt', 'fibrinogen', 'd_dimer', 'factors'],
+                anaLiverParams: ['ast', 'alt', 'alp', 'bilirubin_total', 'bilirubin_direct', 'ggt'],
+                anaMetabolicParams: ['fbs', 'hba1c', 'cholesterol', 'trig', 'hdl', 'ldl'],
+                anaUrineParams: ['urine_ph', 'urine_specific', 'urine_protein', 'urine_glucose', 'urine_ketone',
+                    'urine_rbc', 'urine_wbc', 'urine_bacteria'
+                ],
+                anaStoolParams: ['stool_occult', 'stool_wbc', 'stool_rbc', 'stool_fat', 'stool_mucus', 'stool_parasite']
+            };
+
+            var anaAllKeys = [].concat(
+                anaCategoryKeys.anaCbcParams,
+                anaCategoryKeys.anaCoagulationParams,
+                anaCategoryKeys.anaLiverParams,
+                anaCategoryKeys.anaMetabolicParams,
+                anaCategoryKeys.anaUrineParams,
+                anaCategoryKeys.anaStoolParams
+            );
+
+            // Build each category
+            function buildAnaParams(containerId, keys) {
+                var db = anaParamsDB.fa;
+                var tx = t();
+                var container = document.getElementById(containerId);
+                container.innerHTML = '';
+                for (var i = 0; i < keys.length; i++) {
+                    var key = keys[i];
+                    var p = db[key];
+                    if (!p) continue;
+                    var div = document.createElement('div');
+                    div.className = 'param-item';
+                    div.id = 'ana-param-' + key;
+                    var gender = anaGetGender();
+                    var range = p.normal[gender] || p.normal.male || [0, 0];
+                    var normalText = tx.normalLabel + ' ' + range[0] + ' - ' + range[1] + ' ' + p.unit;
+                    div.innerHTML =
+                        '<label>' + p.label + '</label>' +
+                        '<span class="normal-range">' + normalText + '</span>' +
+                        '<div class="input-row">' +
+                        '<input type="number" id="ana-input-' + key + '" step="any" placeholder="' + tx.inputPlaceholder +
+                        '" />' +
+                        '<button class="btn-analyze-single" onclick="anaAnalyzeSingle(\'' + key + '\')">' + tx
+                        .btnAnalyzeSingle + '</button>' +
+                        '</div>' +
+                        '<div class="single-result" id="ana-result-' + key + '"></div>';
+                    container.appendChild(div);
+
+                    var inp = document.getElementById('ana-input-' + key);
+                    inp.addEventListener('input', function(k) {
+                        return function() {
+                            var rd = document.getElementById('ana-result-' + k);
+                            rd.className = 'single-result';
+                            rd.innerHTML = '';
+                            anaUpdateStats();
+                        };
+                    }(key));
+                    inp.addEventListener('keydown', function(k) {
+                        return function(e) {
+                            if (e.key === 'Enter') anaAnalyzeSingle(k);
+                        };
+                    }(key));
+                }
+            }
+
+            // Build all ANA categories
+            for (var cat in anaCategoryKeys) {
+                buildAnaParams(cat, anaCategoryKeys[cat]);
+            }
+
+            // Gender change
+            document.querySelectorAll('input[name="anaGender"]').forEach(function(el) {
+                el.addEventListener('change', function() {
+                    var tx = t();
+                    var db = anaParamsDB.fa;
+                    for (var j = 0; j < anaAllKeys.length; j++) {
+                        var key = anaAllKeys[j];
+                        var p = db[key];
+                        var gender = anaGetGender();
+                        var range = p.normal[gender] || p.normal.male || [0, 0];
+                        var span = document.querySelector('#ana-param-' + key + ' .normal-range');
+                        if (span) {
+                            span.textContent = tx.normalLabel + ' ' + range[0] + ' - ' + range[1] + ' ' + p.unit;
+                        }
+                        var rd = document.getElementById('ana-result-' + key);
+                        if (rd) { rd.className = 'single-result';
+                            rd.innerHTML = ''; }
+                    }
+                    anaUpdateStats();
+                });
+            });
+
+            anaLoaded = true;
+            anaUpdateStats();
+            translateUI();
+        }
+
+        // ============================================================
+        // 9. ANA FUNCTIONS
+        // ============================================================
+        function anaGetGender() {
+            var el = document.querySelector('input[name="anaGender"]:checked');
+            return el ? el.value : 'female';
+        }
+
+        function anaGetValue(key) {
+            var inp = document.getElementById('ana-input-' + key);
+            if (!inp) return null;
+            var val = parseFloat(inp.value);
+            return isNaN(val) ? null : val;
+        }
+
+        function anaInterpretParam(key, value) {
+            var db = anaParamsDB.fa;
+            var p = db[key];
+            if (!p) return null;
+            var tx = t();
+            var gender = anaGetGender();
+            var range = p.normal[gender] || p.normal.male || [0, 0];
+            var low = range[0],
+                high = range[1];
+            var status = 'normal';
+            var statusText = tx.statusNormal;
+            var statusClass = 'status-normal';
+            if (value < low) { status = 'low';
+                statusText = tx.statusLow;
+                statusClass = 'status-low'; } else if (value > high) { status = 'high';
+                statusText = tx.statusHigh;
+                statusClass = 'status-high'; }
+
+            var diseaseList = status === 'high' ? p.highDiseases : (status === 'low' ? p.lowDiseases : []);
+            var diseaseHTML = '';
+            if (diseaseList.length > 0) {
+                diseaseHTML = '<div class="disease-list"><strong>' + (status === 'high' ? tx.increaseWord : tx.decreaseWord) +
+                    tx.diseaseIntroSuffix + '</strong><br>';
+                for (var i = 0; i < diseaseList.length; i++) {
+                    diseaseHTML += '• <strong>' + diseaseList[i].name + ':</strong> ' + diseaseList[i].desc + '<br>';
+                }
+                diseaseHTML += '</div>';
+            } else {
+                diseaseHTML = '<div class="disease-list">' + tx.diseaseNormalMsg + '</div>';
+            }
+
+            var nursingItems = [];
+            if (status === 'high' && p.nursingHigh) {
+                nursingItems = p.nursingHigh;
+            } else if (status === 'low' && p.nursingLow) {
+                nursingItems = p.nursingLow;
+            } else {
+                nursingItems = tx.nursingDefault;
+            }
+
+            var nursingHTML = '';
+            if (nursingItems.length > 0) {
+                nursingHTML = '<div class="disease-list" style="border-color:#2c6b9e;"><strong>' + tx.nursingHeader +
+                    '</strong><br>';
+                for (var i = 0; i < nursingItems.length; i++) {
+                    nursingHTML += '• ' + nursingItems[i] + '<br>';
+                }
+                nursingHTML += '</div>';
+            }
+
+            return {
+                key: key,
+                label: p.label,
+                value: value,
+                unit: p.unit,
+                normalRange: low + ' - ' + high,
+                status: status,
+                statusText: statusText,
+                statusClass: statusClass,
+                desc: p.desc,
+                diseaseHTML: diseaseHTML,
+                nursingHTML: nursingHTML,
+                isNormal: status === 'normal'
+            };
+        }
+
+        function anaAnalyzeSingle(key) {
+            var tx = t();
+            var val = anaGetValue(key);
+            var inp = document.getElementById('ana-input-' + key);
+            var resultDiv = document.getElementById('ana-result-' + key);
+
+            if (val === null) {
+                inp.classList.add('error');
+                resultDiv.className = 'single-result';
+                resultDiv.innerHTML = tx.errorInvalidNumber;
+                resultDiv.classList.add('visible');
+                return;
+            }
+            inp.classList.remove('error');
+
+            var result = anaInterpretParam(key, val);
+            if (!result) return;
+
+            var statusClass = 'normal';
+            if (result.status === 'high') statusClass = 'high';
+            else if (result.status === 'low') statusClass = 'low';
+
+            var html = '<strong>' + result.statusText + '</strong><br>' +
+                tx.descIcon + ' ' + result.desc + '<br>' +
+                tx.yourValueSingle + ' ' + result.value + ' ' + result.unit + ' | ' + tx.normalRangeLabel + ' ' + result
+                .normalRange + ' ' + result.unit + '<br>' +
+                result.diseaseHTML +
+                result.nursingHTML;
+
+            resultDiv.innerHTML = html;
+            resultDiv.className = 'single-result visible ' + statusClass;
+            anaUpdateStats();
+        }
+
+        function anaAnalyzeAllSingles() {
+            var tx = t();
+            var analyzed = 0;
+            for (var i = 0; i < anaAllKeys.length; i++) {
+                var key = anaAllKeys[i];
+                var val = anaGetValue(key);
+                if (val !== null) {
+                    anaAnalyzeSingle(key);
+                    analyzed++;
+                }
+            }
+            if (analyzed === 0) {
+                alert(tx.alertNoneFilledSingles);
+            }
+        }
+
+        function anaInterpretAll() {
+            var tx = t();
+            var results = [];
+            var hasValue = false;
+
+            for (var i = 0; i < anaAllKeys.length; i++) {
+                var key = anaAllKeys[i];
+                var val = anaGetValue(key);
+                var inp = document.getElementById('ana-input-' + key);
+                if (val === null) {
+                    inp.classList.remove('error');
+                } else {
+                    hasValue = true;
+                    inp.classList.remove('error');
+                    var result = anaInterpretParam(key, val);
+                    if (result) results.push(result);
+                }
+            }
+
+            if (!hasValue) {
+                alert(tx.alertNoneFilledAll);
+                return;
+            }
+
+            var outputSection = document.getElementById('anaOutputSection');
+            var outputContent = document.getElementById('anaOutputContent');
+            outputSection.classList.add('visible');
+
+            var html = '';
+            if (results.length === 0) {
+                html = '<div class="empty-message">' + tx.emptyMessage + '</div>';
+            } else {
+                for (var i = 0; i < results.length; i++) {
+                    var r = results[i];
+                    html += '<div class="result-item">' +
+                        '<div class="param-name">' + r.label + '</div>' +
+                        '<span class="param-status ' + r.statusClass + '">' + r.statusText + '</span>' +
+                        '<div class="desc">' +
+                        '<strong>' + tx.explanationLabel + '</strong> ' + r.desc + '<br>' +
+                        '<strong>' + tx.yourValueLabel + '</strong> ' + r.value + ' ' + r.unit + ' | ' +
+                        '<strong>' + tx.normalRangeLabel + '</strong> ' + r.normalRange + ' ' + r.unit +
+                        '</div>' +
+                        r.diseaseHTML +
+                        r.nursingHTML +
+                        '</div>';
+                }
+
+                var abnormalCount = 0,
+                    highCount = 0,
+                    lowCount = 0;
+                for (var i = 0; i < results.length; i++) {
+                    if (!results[i].isNormal) {
+                        abnormalCount++;
+                        if (results[i].status === 'high') highCount++;
+                        else if (results[i].status === 'low') lowCount++;
+                    }
+                }
+
+                var summary = '';
+                var specialist = tx.specialists.internal;
+                var careItems = [];
+
+                if (abnormalCount === 0) {
+                    summary = tx.allNormalSummary;
+                    specialist = tx.specialistAnnual;
+                    careItems = tx.careItemsAllNormal.slice();
+                } else {
+                    var warning = '';
+                    if (highCount > 0) warning += highCount + tx.highCountSuffix;
+                    if (lowCount > 0) warning += lowCount + tx.lowCountSuffix;
+                    summary = tx.abnormalSummaryPrefix + warning + tx.abnormalSummaryMid + abnormalCount +
+                        tx.abnormalSummarySuffix;
+
+                    var abnormalKeys = [];
+                    for (var i = 0; i < results.length; i++) {
+                        if (!results[i].isNormal) abnormalKeys.push(results[i].key);
+                    }
+                    var bloodKeys = ['rbc', 'hb', 'hct', 'mcv', 'mch', 'mchc', 'rdw', 'wbc', 'plt'];
+                    var coagKeys = ['esr', 'pt', 'inr', 'ptt', 'fibrinogen', 'd_dimer', 'factors'];
+                    var liverKeys = ['ast', 'alt', 'alp', 'bilirubin_total', 'bilirubin_direct', 'ggt'];
+                    var sugarKeys = ['fbs', 'hba1c', 'cholesterol', 'trig', 'hdl', 'ldl'];
+                    var hasBlood = false,
+                        hasCoag = false,
+                        hasLiver = false,
+                        hasSugar = false,
+                        hasUrine = false,
+                        hasStool = false;
+                    for (var i = 0; i < abnormalKeys.length; i++) {
+                        var k = abnormalKeys[i];
+                        if (bloodKeys.indexOf(k) !== -1) hasBlood = true;
+                        if (coagKeys.indexOf(k) !== -1) hasCoag = true;
+                        if (liverKeys.indexOf(k) !== -1) hasLiver = true;
+                        if (sugarKeys.indexOf(k) !== -1) hasSugar = true;
+                        if (k.indexOf('urine_') === 0) hasUrine = true;
+                        if (k.indexOf('stool_') === 0) hasStool = true;
+                    }
+                    if (hasBlood) specialist = tx.specialists.blood;
+                    else if (hasCoag) specialist = tx.specialists.coag;
+                    else if (hasLiver) specialist = tx.specialists.liver;
+                    else if (hasSugar) specialist = tx.specialists.sugar;
+                    else if (hasUrine) specialist = tx.specialists.urine;
+                    else if (hasStool) specialist = tx.specialists.stool;
+                    else specialist = tx.specialists.internal;
+
+                    careItems = tx.careItemsAbnormalBase.slice();
+
+                    if (abnormalKeys.indexOf('plt') !== -1 || abnormalKeys.indexOf('pt') !== -1 || abnormalKeys.indexOf(
+                            'ptt') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.bleeding || []);
+                    }
+                    if (abnormalKeys.indexOf('wbc') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.wbc || []);
+                    }
+                    if (abnormalKeys.indexOf('fbs') !== -1 || abnormalKeys.indexOf('hba1c') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.sugar || []);
+                    }
+                    if (abnormalKeys.indexOf('ast') !== -1 || abnormalKeys.indexOf('alt') !== -1 || abnormalKeys.indexOf(
+                            'alp') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.liver || []);
+                    }
+                    if (abnormalKeys.indexOf('urine_protein') !== -1 || abnormalKeys.indexOf('urine_rbc') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.urineProtein || []);
+                    }
+                    if (abnormalKeys.indexOf('d_dimer') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.dDimer || []);
+                    }
+                    if (abnormalKeys.indexOf('urine_ketone') !== -1) {
+                        careItems = careItems.concat(tx.careExtra.ketone || []);
+                    }
+                }
+
+                html += '<div class="final-summary">' +
+                    '<h3>' + tx.finalSummaryTitle + '</h3>' +
+                    '<p>' + summary + '</p>' +
+                    '<p style="margin-top:10px;"><span class="specialist">' + tx.specialistLabel + ' ' + specialist +
+                    '</span></p>' +
+                    '<div style="margin-top:12px;"><strong>' + tx.comprehensiveCareLabel + '</strong>' +
+                    '<ul class="care-list">';
+                for (var i = 0; i < careItems.length; i++) {
+                    html += '<li>' + careItems[i] + '</li>';
+                }
+                html += '</ul></div>' +
+                    '<p style="margin-top:10px;font-size:12px;color:#4a6a8a;">' + tx.evidenceNote + '</p>' +
+                    '<p style="margin-top:8px;font-size:11px;color:#4a6a8a;">' + tx.sourcesNote + '</p>' +
+                    '</div>';
+            }
+
+            outputContent.innerHTML = html;
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            anaUpdateStats();
+        }
+
+        function anaUpdateStats() {
+            var filled = 0,
+                normal = 0,
+                abnormal = 0;
+
+            for (var i = 0; i < anaAllKeys.length; i++) {
+                var key = anaAllKeys[i];
+                var val = anaGetValue(key);
+                if (val !== null) {
+                    filled++;
+                    var result = anaInterpretParam(key, val);
+                    if (result) {
+                        if (result.isNormal) normal++;
+                        else abnormal++;
+                    }
+                }
+            }
+
+            var tx = t();
+            document.getElementById('anaFilledCount').textContent = filled;
+            document.getElementById('anaTotalCount').textContent = anaAllKeys.length;
+            document.getElementById('anaNormalCount').textContent = normal;
+            document.getElementById('anaAbnormalCount').textContent = abnormal;
+
+            var progress = (filled / anaAllKeys.length) * 100;
+            document.getElementById('anaProgressFill').style.width = progress + '%';
+
+            document.getElementById('anaBtnInterpretAll').disabled = (filled === 0);
+
+            for (var c in anaCategoryKeys) {
+                var keys = anaCategoryKeys[c];
+                var catFilled = 0;
+                for (var j = 0; j < keys.length; j++) {
+                    if (anaGetValue(keys[j]) !== null) catFilled++;
+                }
+                var badge = document.getElementById('anaBadge-' + c.replace('ana', '').toLowerCase());
+                if (!badge) {
+                    // Try with full name
+                    var fullName = c.replace('ana', '').toLowerCase();
+                    var badgeId = 'anaBadge-' + fullName;
+                    badge = document.getElementById(badgeId);
+                    if (!badge) {
+                        // Last attempt - use the category key directly
+                        var altBadge = document.getElementById('anaBadge-' + c);
+                        if (altBadge) badge = altBadge;
+                    }
+                }
+                if (badge) badge.textContent = catFilled + ' / ' + keys.length;
+            }
+        }
+
+        function anaClearAll() {
+            for (var i = 0; i < anaAllKeys.length; i++) {
+                var key = anaAllKeys[i];
+                var inp = document.getElementById('ana-input-' + key);
+                if (inp) { inp.value = '';
+                    inp.classList.remove('error'); }
+                var rd = document.getElementById('ana-result-' + key);
+                if (rd) { rd.className = 'single-result';
+                    rd.innerHTML = ''; }
+            }
+            document.getElementById('anaOutputSection').classList.remove('visible');
+            document.getElementById('anaOutputContent').innerHTML = '';
+            anaUpdateStats();
+        }
+
+        // ============================================================
+        // 10. COMMON FUNCTIONS
+        // ============================================================
+        function toggleCategory(id) {
+            var cat = document.getElementById('cat-' + id);
+            if (cat) cat.classList.toggle('open');
+        }
+
+        function printPage() {
+            window.print();
+        }
+
+        // ============================================================
+        // 11. INIT
+        // ============================================================
+        // Load ABG by default
+        loadABG();
+
+        // Load VBG in background
+        setTimeout(loadVBG, 300);
+
+        // Load ANA on demand (will be loaded when tab is clicked)
+        // But we'll preload it after a delay
+        setTimeout(function() {
+            if (!anaLoaded) loadANA();
+        }, 500);
+
+        // Translate UI
+        translateUI();
+    </script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("service-worker.js").catch(() => {});
+            });
+        }
+    </script>
+</body>
+</html>
